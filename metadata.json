@@ -1,0 +1,8 @@
+{
+  "name": "The Scholar's Vault",
+  "description": "A curated collection of the finest learning resources for computer science, mathematics, and artificial intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
