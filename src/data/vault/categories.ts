@@ -1,6 +1,6 @@
 import {
   BookOpen, Calculator, Cpu, Brain, Settings, Zap, GraduationCap, Users, Hammer,
-  Flame, TrendingUp, Coins, Scale, Camera, Music,
+  Flame, TrendingUp, Coins, Scale,
 } from 'lucide-react';
 import type { Category } from '../../types';
 
@@ -19,6 +19,4 @@ export const VAULT_CATEGORIES: Category[] = [
   { id: 'b2b-sales', name: 'B2B Sales & GTM', icon: TrendingUp },
   { id: 'finance', name: 'Finance & Moats', icon: Coins },
   { id: 'meta-thinking', name: 'Meta-Thinking', icon: Scale },
-  { id: 'cinema-visuals', name: 'Cinema & Visuals', icon: Camera },
-  { id: 'music-audio', name: 'Music & Audio Science', icon: Music },
 ];

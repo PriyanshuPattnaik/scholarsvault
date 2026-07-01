@@ -13,8 +13,8 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 bg-sepia rounded-full animate-pulse" />
           <div>
-            <h1 className="text-3xl font-serif text-ink tracking-tight font-semibold">Priyanshu&apos;s Vault</h1>
-            <p className="text-sepia italic text-xs font-serif">Scholar · builder · worship multimedia · gap year OS</p>
+            <h1 className="text-3xl font-serif text-ink tracking-tight font-semibold">The Scholar&apos;s Cave</h1>
+            <p className="text-sepia italic text-xs font-serif">Four chambers · zero overlap · polymath OS</p>
           </div>
         </div>
 

@@ -14,6 +14,10 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'math', name: 'Cengage Maths', desc: '6 levels of premium physical math preparation for high difficulty.', tags: ['textbook'] },
   { category: 'math', name: 'Maron Calculus', desc: 'Advanced single-variable calculus problem-solving.', tags: ['rare', 'textbook'] },
   { category: 'math', name: 'SL Loney Coordinate Geometry', desc: 'The original coordinate geometry benchmark prep.', tags: ['rare', 'textbook'] },
+  { category: 'math', name: 'Paul\'s Online Math Notes', desc: 'Lamar University. Exhaustive free algebra, calculus, and differential-equations notes with worked examples — ideal JEE/A-Level companion alongside Cengage.', url: 'https://tutorial.math.lamar.edu', tags: ['rare', 'free'] },
+  { category: 'math', name: 'Professor Leonard (YouTube)', desc: 'Full-length university lectures on calculus, statistics, and algebra — zero shortcuts, complete blackboard derivations. The rare free substitute for a paid coaching module.', url: 'https://www.youtube.com/user/ProfLeonard', tags: ['rare', 'free'] },
+  { category: 'math', name: 'StatQuest (Josh Starmer)', desc: 'Statistics and ML intuition in 10-minute visual bursts. Bridges JEE probability to research-level biostatistics without symbol overload.', url: 'https://www.youtube.com/@statquest', tags: ['rare', 'free'] },
+  { category: 'math', name: 'GeoGebra', desc: 'Interactive geometry, vectors, and calculus visualizations — rotate JEE coordinate-geometry problems in 3D before touching pen.', url: 'https://www.geogebra.org', tags: ['rare', 'free'] },
 
   // CS Foundations
   { category: 'foundations', name: 'CS50 Extra (Harvard)', desc: 'The gold standard CS intro. Learn to think like a professional developer.', url: 'https://cs50.harvard.edu', tags: ['free'] },
@@ -25,6 +29,10 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'foundations', name: 'Dive Into Systems', desc: 'Textbook on hardware structures, assembly, compiled architectures.', url: 'https://diveintosystems.org', tags: ['rare', 'free'] },
   { category: 'foundations', name: 'OSTEP Operating Systems', desc: 'Free systems textbook: virtualization, concurrency, persistence.', url: 'https://pages.cs.wisc.edu/~remzi/OSTEP/', tags: ['rare', 'free'] },
   { category: 'foundations', name: 'Exercism', desc: 'Mentored coding challenges in 67 separate programming languages.', url: 'https://exercism.org', tags: ['rare', 'free'] },
+  { category: 'foundations', name: 'The Odin Project', desc: 'Free full-stack curriculum — HTML/CSS/JS, Ruby, Node, React, databases. Project-based path that forces git discipline from day one.', url: 'https://www.theodinproject.com', tags: ['rare', 'free'] },
+  { category: 'foundations', name: 'CS61A Berkeley', desc: 'Structure and Interpretation of Computer Programs reimagined in Python. Lectures, textbook, and autograder — the deepest free CS1 course online.', url: 'https://cs61a.org', tags: ['rare', 'free'] },
+  { category: 'foundations', name: 'Computer Networks (Systems Approach)', desc: 'Free online textbook from Stanford authors — TCP/IP, routing, congestion control with runnable code. Pairs with Beej\'s guide for sockets layer.', url: 'https://book.systemsapproach.org', tags: ['rare', 'free'] },
+  { category: 'foundations', name: 'freeCodeCamp', desc: '6,000+ hour free curriculum spanning responsive web, Python, data analysis, and security certifications — all project-graded.', url: 'https://www.freecodecamp.org', tags: ['free'] },
 
   // ML / AI
   { category: 'ml', name: 'Andrej Karpathy\'s Blog', desc: 'Former OpenAI / Tesla AI Director. Host of Eureka Labs. Iconic, incredibly clear builder insights covering neural net formulas, Software 2.0, and hacker-mind instruction guides.', url: 'https://karpathy.ai', tags: ['must-read', 'free'] },
@@ -40,6 +48,10 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'ml', name: 'Yannic Kilcher (YT)', desc: 'Brilliant paper walkthroughs explaining the absolute modern frontier.', url: 'https://www.youtube.com/@YannicKilcher', tags: ['free', 'youtube'] },
   { category: 'ml', name: 'Maxime Labonne\'s blog', desc: 'LLM fine-tuning, quantization, DPO, and alignment.', url: 'https://mlabonne.github.io/blog/', tags: ['rare', 'free'] },
   { category: 'ml', name: 'LLMs from Scratch', desc: 'Sebastian Raschka\'s masterclass walkthrough of building GPT-2.', url: 'https://github.com/rasbt/LLMs-from-scratch', tags: ['rare', 'free'] },
+  { category: 'ml', name: 'Michael Nielsen — Neural Networks', desc: 'Free online book with interactive code cells. Builds intuition for backprop, CNNs, and regularization better than most paid bootcamps.', url: 'https://neuralnetworksanddeeplearning.com', tags: ['rare', 'free'] },
+  { category: 'ml', name: 'Jay Alammar — Visual Guides', desc: 'The illustrated transformer, BERT, and diffusion model explainers used internally at Google and OpenAI onboarding. Rare clarity on attention mechanics.', url: 'https://jalammar.github.io', tags: ['rare', 'free'] },
+  { category: 'ml', name: 'Karpathy — nn-zero-to-hero', desc: 'Build micrograd, makemore, and a full GPT from scratch in PyTorch. The single best free code-first DL sequence for CS students.', url: 'https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI05v9XFCxoWsWafdFajZW', tags: ['rare', 'free'] },
+  { category: 'ml', name: 'Full Stack Deep Learning', desc: 'Free lecture series on training, debugging, deployment, and MLOps from Berkeley/startup practitioners — closes the gap between notebooks and production.', url: 'https://fullstackdeeplearning.com', tags: ['rare', 'free'] },
 
   // Systems
   { category: 'systems', name: 'DDIA (Kleppmann)', desc: 'Designing Data-Intensive Applications. Read chapters 1–5 first.', url: 'https://dataintensive.net', tags: ['paid'] },
@@ -48,6 +60,9 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'systems', name: 'High Scalability', desc: 'Primary case studies of how major cloud systems scale under load.', url: 'https://highscalability.com', tags: ['rare', 'free'] },
   { category: 'systems', name: 'PostgreSQL Internals', desc: 'Deep diving query planners, buffers, write-ahead logs.', url: 'https://www.interdb.jp/pg/', tags: ['rare', 'free'] },
   { category: 'systems', name: 'explained.ai', desc: 'Deep visualizations of matrices, gradient flows, and models.', url: 'https://explained.ai', tags: ['rare', 'free'] },
+  { category: 'systems', name: 'MIT 6.824 — Distributed Systems', desc: 'Free lecture videos, papers, and labs building Raft, KV stores, and MapReduce. The graduate systems course every senior engineer cites.', url: 'https://pdos.csail.mit.edu/6.824/', tags: ['rare', 'free'] },
+  { category: 'systems', name: 'Redis University', desc: 'Free courses on Redis data structures, streams, and caching patterns — essential for real-time agent orchestration and session stores.', url: 'https://university.redis.com', tags: ['rare', 'free'] },
+  { category: 'systems', name: 'Awesome Scalability', desc: 'Curated index of architecture postmortems, scalability case studies, and performance tuning guides from production systems at scale.', url: 'https://github.com/binhnguyennus/awesome-scalability', tags: ['rare', 'free'] },
 
   // Practice
   { category: 'practice', name: 'Advent of Code', desc: 'Annual coding puzzles. Exceptional for practicing algorithms.', url: 'https://adventofcode.com', tags: ['free'] },
@@ -58,6 +73,9 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'practice', name: 'pwn.college', desc: 'ASU cybersecurity engine. Brutally deep assembly exploitation.', url: 'https://pwn.college', tags: ['rare', 'free'] },
   { category: 'practice', name: 'Kaggle Kernels', desc: 'Explore top notebook solutions to study elite ML design.', url: 'https://www.kaggle.com', tags: ['free'] },
   { category: 'practice', name: 'CodeCrafters', desc: 'Build Redis, Git, or SQLite from scratch in multiple languages.', url: 'https://app.codecrafters.io', tags: ['rare', 'paid'] },
+  { category: 'practice', name: 'NeetCode', desc: 'Curated blind-75/150 roadmaps with free video explanations mapping LeetCode patterns to underlying algorithms — optimized for interview + JEE logic transfer.', url: 'https://neetcode.io', tags: ['rare', 'free'] },
+  { category: 'practice', name: 'USACO Guide', desc: 'Free competitive-programming curriculum from bronze to platinum with tagged problems and editorials — structured alternative to random Codeforces grinding.', url: 'https://usaco.guide', tags: ['rare', 'free'] },
+  { category: 'practice', name: 'CS50 AI (Harvard)', desc: 'Free course building search, optimization, ML, and LLM applications in Python — project-heavy bridge between foundations and ML track.', url: 'https://cs50.harvard.edu/ai/', tags: ['rare', 'free'] },
 
   // Research
   { category: 'research', name: 'arXiv cs.LG', desc: 'The pure, unfiltered preprint repository representing the complete frontier of modern machine learning research.', url: 'https://arxiv.org/list/cs.LG/recent', tags: ['papers', 'free'] },
@@ -68,12 +86,18 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'research', name: 'Semantic Scholar', desc: 'AI assistant mapping citation indices and research lineages.', url: 'https://www.semanticscholar.org', tags: ['rare', 'free'] },
   { category: 'research', name: 'Connected Papers', desc: 'Visualize surrounding research graphics mapping related literature.', url: 'https://www.connectedpapers.com', tags: ['rare', 'free'] },
   { category: 'research', name: 'The Decoder', desc: 'Precise reporting on frontier algorithms and corporate releases.', url: 'https://the-decoder.com', tags: ['free'] },
+  { category: 'research', name: 'Papers We Love', desc: 'Global meetups and GitHub repo archiving readable summaries of landmark CS papers — distributed systems, compilers, ML theory.', url: 'https://paperswelove.org', tags: ['rare', 'free'] },
+  { category: 'research', name: 'MIT OpenCourseWare', desc: 'Full syllabi, lecture notes, and assignments for graduate CS, math, and physics — audit the same material as on-campus research students.', url: 'https://ocw.mit.edu', tags: ['rare', 'free'] },
+  { category: 'research', name: 'AlphaSignal Newsletter', desc: 'Daily digest filtering the highest-signal arXiv drops in ML/AI with plain-English summaries — saves hours of cs.LG scrolling.', url: 'https://alphasignal.ai', tags: ['rare', 'free'] },
 
   // Community
   { category: 'community', name: 'Zenn.dev', desc: 'Incredible technical articles ahead of major Western channels.', url: 'https://zenn.dev', tags: ['rare', 'free'] },
   { category: 'community', name: 'Lobste.rs', desc: 'Curated developer discussions focusing on extreme technical depth.', url: 'https://lobste.rs', tags: ['rare', 'community'] },
   { category: 'community', name: 'Hacker News', desc: 'The premier aggregator index for software engineering builders.', url: 'https://news.ycombinator.com', tags: ['community'] },
   { category: 'community', name: 'HuggingFace Discord', desc: 'Active conversation hub discussing paper weights and pipelines.', url: 'https://discord.gg/hugging-face', tags: ['community'] },
+  { category: 'community', name: 'Indie Hackers', desc: 'Founders sharing revenue numbers, GTM experiments, and solo-builder playbooks — rare transparency on what actually ships.', url: 'https://www.indiehackers.com', tags: ['rare', 'free'] },
+  { category: 'community', name: 'r/MachineLearning', desc: 'Research discussion, paper critiques, and implementation help from practitioners — higher signal than generic AI Twitter.', url: 'https://www.reddit.com/r/MachineLearning/', tags: ['rare', 'forum', 'free'] },
+  { category: 'community', name: 'Papers We Love GitHub', desc: 'Hundreds of community-written paper walkthroughs with slides and talk recordings — self-study version of the meetup circuit.', url: 'https://github.com/papers-we-love/papers-we-love', tags: ['rare', 'free'] },
 
   // Build & Startups
   { category: 'build', name: 'roadmap.sh', desc: 'Interactive visual architectures for any specific software path.', url: 'https://roadmap.sh', tags: ['free'] },
@@ -82,11 +106,17 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'build', name: 'PostgreSQL Docs', desc: 'The absolute manual on query optimizations and structure setups.', url: 'https://www.postgresql.org/docs/current/index.html', tags: ['free'] },
   { category: 'build', name: 'Anthropic Cookbook', desc: 'System structures explaining multi-agent flows and MCP networks.', url: 'https://docs.anthropic.com', tags: ['free'] },
   { category: 'build', name: 'LangGraph Docs', desc: 'Complete framework for stateful cyclical multi-agent graphs.', url: 'https://langchain-ai.github.io/langgraph/', tags: ['free'] },
+  { category: 'build', name: 'Y Combinator Startup School', desc: 'Free video curriculum from YC partners — idea validation, MVP, metrics, fundraising. The canonical zero-to-one operator course.', url: 'https://www.startupschool.org', tags: ['rare', 'free'] },
+  { category: 'build', name: 'Patrick McKenzie (Kalzumeus)', desc: 'Legendary essays on SaaS pricing, B2B sales, engineering economics, and Stripe-era startup mechanics — archived free on kalzumeus.com.', url: 'https://www.kalzumeus.com', tags: ['rare', 'free'] },
+  { category: 'build', name: 'Julian Shapiro — Startup Guide', desc: 'Free step-by-step guide to finding startup ideas, getting first users, and writing landing pages that convert — tactical and short.', url: 'https://www.julian.com/guide/startup/first-users', tags: ['rare', 'free'] },
 
   // The Bookshelf
   { category: 'books', name: 'The Pragmatic Programmer', desc: 'Software engineering culture, mindset, automation, and hygiene.', tags: ['paid'] },
   { category: 'books', name: 'SICP', desc: 'MIT\'s legendary textbook exploring functional computation patterns.', url: 'https://mitpress.mit.edu/SICP/', tags: ['rare', 'free'] },
   { category: 'books', name: 'Deep Learning', desc: 'The reference textbook written by Goodfellow, Yoshua Bengio.', url: 'https://www.deeplearningbook.org', tags: ['free'] },
+  { category: 'books', name: 'Free Programming Books', desc: 'Massive GitHub index of legally free CS, math, and engineering textbooks — filter by language and topic before buying anything.', url: 'https://github.com/EbookFoundation/free-programming-books', tags: ['rare', 'free'] },
+  { category: 'books', name: 'OpenStax', desc: 'Peer-reviewed free college textbooks — calculus, physics, economics, biology. Print-quality PDFs for NIOS/A-Level cross-study.', url: 'https://openstax.org', tags: ['rare', 'free'] },
+  { category: 'books', name: 'Paul Graham Essays', desc: 'Founder of YC. Timeless essays on startups, writing, and thinking — "How to Do Great Work" and "Maker\'s Schedule" are essential.', url: 'http://www.paulgraham.com/articles.html', tags: ['rare', 'free'] },
 
   // Theology & Faith
   { category: 'faith', name: 'C.S. Lewis Inst.', desc: 'Deep intellectual defences from the author of Mere Christianity.', url: 'https://www.cslewisinstitute.org/resources', tags: ['must-read', 'free'] },
@@ -96,6 +126,9 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'faith', name: 'Desiring God', desc: 'John Piper\'s directory. "Don\'t Waste Your Life" logs.', url: 'https://www.desiringgod.org', tags: ['free'] },
   { category: 'faith', name: 'William Lane Craig', desc: 'Philosophical debates mapping the Kalam Cosmological Proof.', url: 'https://www.reasonablefaith.org', tags: ['rare', 'free'] },
   { category: 'faith', name: 'Faith Driven Founder', desc: 'Wrestling with VC metrics, team leadership, and stewardship.', url: 'https://faithdrivenentrepreneur.org', tags: ['must-read', 'pod'] },
+  { category: 'faith', name: 'Ligonier — Learn', desc: 'R.C. Sproul\'s teaching ministry. Free articles, video series, and systematic theology primers — intellectual depth for worship leaders who study.', url: 'https://learn.ligonier.org', tags: ['rare', 'free'] },
+  { category: 'faith', name: 'Monergism', desc: 'Massive free theological library — historic creeds, Reformed commentaries, and sermon archives. Reference-grade doctrine without paywalls.', url: 'https://www.monergism.com', tags: ['rare', 'free'] },
+  { category: 'faith', name: '9Marks', desc: 'Healthy church ministry resources — worship, leadership, church discipline, and ecclesiology written for pastors and serious lay leaders.', url: 'https://www.9marks.org', tags: ['rare', 'free'] },
 
   // B2B Sales & GTM & Technology Moats
   { category: 'b2b-sales', name: 'Stratechery (Ben Thompson)', desc: 'Technology business analyst. Legendary author of "Aggregation Theory". Preeminent strategic insights detailing modern software platform power levers and market distribution.', url: 'https://stratechery.com', tags: ['must-read', 'pod'] },
@@ -106,6 +139,9 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'b2b-sales', name: 'GTMnow', desc: 'Tactical playbooks detailing enterprise sales, pipeline generation, and customer acquisition cycles.', url: 'https://gtmnow.com', tags: ['must-read', 'free'] },
   { category: 'b2b-sales', name: 'CXL Conversion', desc: 'Peep Laja. Extreme focus on metrics-driven conversion rate optimization, direct user analytics, and high-fidelity testing.', url: 'https://cxl.com/blog/', tags: ['rare', 'free'] },
   { category: 'b2b-sales', name: 'Leah Tharin', desc: 'Expert observations detailing why standard PLG models succeed, hit plateaus, or structurally implode.', url: 'https://www.leahtharin.com', tags: ['rare', 'free'] },
+  { category: 'b2b-sales', name: 'First Round Review', desc: 'Long-form tactical essays from First Round Capital — hiring, product-market fit, sales playbooks used by Airbnb, Uber, and Notion early teams.', url: 'https://review.firstround.com', tags: ['rare', 'free'] },
+  { category: 'b2b-sales', name: 'OpenView — PLG Index', desc: 'Free benchmarks and reports on product-led growth metrics, expansion revenue, and freemium conversion — data-backed GTM decisions.', url: 'https://openviewpartners.com/product-led-growth/', tags: ['rare', 'free'] },
+  { category: 'b2b-sales', name: 'HubSpot Academy', desc: 'Free certifications on inbound marketing, sales, and CRM — surprisingly rigorous for a vendor; useful for Zaron GTM vocabulary.', url: 'https://academy.hubspot.com', tags: ['rare', 'free'] },
 
   // Finance, Macro & Economics
   { category: 'finance', name: 'Oaktree Capital Memos', desc: 'Howard Marks. Memos read religiously by Warren Buffett. Invaluable deep dives outlining market credit, valuation cycles, sea changes, and risk control.', url: 'https://www.oaktreecapital.com/insights', tags: ['must-read', 'free'] },
@@ -118,6 +154,9 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'finance', name: 'Dani Rodrik (Harvard)', desc: 'Harvard Kennedy School. Rigorous critiques of hyper-globalization, evaluating trade-off trilemmas, industrial policy, and national self-determination indexes.', url: 'https://www.project-syndicate.org/columnist/dani-rodrik', tags: ['rare', 'papers'] },
   { category: 'finance', name: 'Annual Letters Archive', desc: 'A curated historical goldmine compiling case letters of top funds (Pershing Square, Greenlight, Oaktree) mapping out active investor theses.', url: 'https://www.grahamanddobbsville.net', tags: ['rare', 'free'] },
   { category: 'finance', name: 'David Skok SaaS Metrics', desc: 'The defining, rigorous math workbook outlining CAC, LTV, churn vectors, paybacks, and recurring unit economics.', url: 'https://www.forentrepreneurs.com/saas-metrics-2/', tags: ['rare', 'free'] },
+  { category: 'finance', name: 'Aswath Damodaran (NYU Stern)', desc: 'Free valuation lectures, datasets, and spreadsheets from the dean of corporate finance. DCF, relative valuation, and risk premiums explained from scratch.', url: 'https://pages.stern.nyu.edu/~adamodar/', tags: ['rare', 'free'] },
+  { category: 'finance', name: 'FRED Economic Data', desc: 'Federal Reserve Bank of St. Louis. Free macro time-series — rates, CPI, employment, GDP. Build your own charts for investment theses and essays.', url: 'https://fred.stlouisfed.org', tags: ['rare', 'free'] },
+  { category: 'finance', name: 'Ray Dalio — Principles', desc: 'Free principles library and economic machine explainers — debt cycles, credit, and macro mechanics in plain language with animations.', url: 'https://www.principles.com', tags: ['rare', 'free'] },
 
   // Meta-Thinking, Philosophy & Rationality
   { category: 'meta-thinking', name: 'Astral Codex Ten (Scott Alexander)', desc: 'Psychiatrist Scott Alexander. Preeminent rationalist essays investigating game-theoretic systems, statistical models, cognitive biases, and anti-Moloch layout designs.', url: 'https://www.astralcodexten.com', tags: ['must-read', 'rare', 'free'] },
@@ -128,28 +167,7 @@ export const SCHOLAR_RESOURCES: ResourceInput[] = [
   { category: 'meta-thinking', name: 'Marginal Revolution (Tyler Cowen)', desc: 'Hyper-agentic economics blog. Outstanding daily roundups compiling price structures, emergent self-organization, arts, and human talent discovery.', url: 'https://marginalrevolution.com', tags: ['must-read', 'free', 'pod'] },
   { category: 'meta-thinking', name: 'EconTalk (Russ Roberts)', desc: 'Hoover Institution. An unparalleled 18-year audio archive of deep, civilized dialogues targeting emergent order, societal models, and the limits of central plans.', url: 'https://econtalk.org', tags: ['must-read', 'pod', 'free'] },
   { category: 'meta-thinking', name: 'Cold Takes (Holden Karnofsky)', desc: 'Former Open Philanthropy co-founder. Unpacks the "Most Important Century" scaling timeline, intelligence curves, and critical alignment bounds.', url: 'https://www.cold-takes.com', tags: ['rare', 'free'] },
-
-  // Cinema & Visuals
-  { category: 'cinema-visuals', name: 'Wolfcrow Sareesh', desc: 'The most visceral analytical film school essays online.', url: 'https://wolfcrow.com', tags: ['must-read', 'rare'] },
-  { category: 'cinema-visuals', name: 'Roger Deakins Forum', desc: 'The greatest living cinematographer answers actual community questions.', url: 'https://www.rogerdeakins.com/forums/', tags: ['must-read', 'forum'] },
-  { category: 'cinema-visuals', name: 'Steve Yedlin Science', desc: 'Analytical proof showing display target preparation is the visual engine.', url: 'https://www.yedlin.net/OnColorScience/', tags: ['must-read', 'rare'] },
-  { category: 'cinema-visuals', name: 'Display Prep Demo', desc: 'A 7-minute side-by-side color preparation demonstration.', url: 'https://yedlin.net/DisplayPrepDemo/', tags: ['rare', 'free'] },
-  { category: 'cinema-visuals', name: 'No Film School', desc: 'Practical interviews, pricing guides, and tech breakdowns.', url: 'https://nofilmschool.com', tags: ['free'] },
-  { category: 'cinema-visuals', name: 'Lift Gamma Gain', desc: 'Extremely advanced technical color grade discussion pipelines.', url: 'https://www.liftgammagain.com/forum/index.php', tags: ['rare', 'forum'] },
-  { category: 'cinema-visuals', name: 'StudioBinder', desc: 'Framing, blocking, and lens dynamic breakdowns.', url: 'https://www.studiobinder.com/blog/', tags: ['free'] },
-  { category: 'cinema-visuals', name: 'Video Copilot', desc: 'Kramer\'s legendary AE compositing and track scripts.', url: 'https://www.videocopilot.net', tags: ['rare', 'free'] },
-  { category: 'cinema-visuals', name: 'Motionographer', desc: 'Top visual reference collections profiling world-class motion.', url: 'https://motionographer.com', tags: ['rare', 'free'] },
-
-  // Music & Audio Science
-  { category: 'music-audio', name: 'musictheory.net', desc: 'Free interactive modules covering notes, modes, scales and cords.', url: 'https://www.musictheory.net', tags: ['must-read', 'free'] },
-  { category: 'music-audio', name: 'Hooktheory', desc: 'Visual progressions, plucks and arrangement structures.', url: 'https://www.hooktheory.com', tags: ['must-read'] },
-  { category: 'music-audio', name: 'Serum Wavetable', desc: 'Xfer records. The most critical system synth for modern EDM.', url: 'https://xferrecords.com', tags: ['must-read', 'paid'] },
-  { category: 'music-audio', name: 'Vital Synth', desc: 'The premier free spectral wavetable option competing with Serum.', url: 'https://vital.audio', tags: ['must-read', 'free'] },
-  { category: 'music-audio', name: 'Teoria', desc: 'Exercises practicing perfect pitch, intervals and keys.', url: 'https://www.teoria.com', tags: ['free'] },
-  { category: 'music-audio', name: 'Sonic Pi', desc: 'Ruby-based live script loop system transforming arrays to beats.', url: 'https://sonic-pi.net', tags: ['free'] },
-  { category: 'music-audio', name: 'SuperCollider', desc: 'Object-oriented raw audio code generator interface.', url: 'https://supercollider.github.io', tags: ['free'] },
-  { category: 'music-audio', name: 'Tone.js WebAudio', desc: 'Developer friendly Web Audio API wrapping synthesizer graphs.', url: 'https://tonejs.github.io', tags: ['free'] },
-  { category: 'music-audio', name: 'Magenta Google', desc: 'Probabilistic machine learning model generating drum structures.', url: 'https://magenta.tensorflow.org', tags: ['free'] },
-  { category: 'music-audio', name: 'TidalCycles', desc: 'Live coding patterns, rendering complex tracks as code blocks.', url: 'https://tidalcycles.org', tags: ['free'] },
-  { category: 'music-audio', name: 'Max/MSP Cycling', desc: 'Graphical node programming engine designed for custom synthesizers.', url: 'https://cycling74.com', tags: ['paid'] },
+  { category: 'meta-thinking', name: 'ncase.me', desc: 'Nicky Case. Interactive explainers on game theory, trust, voting systems, and neural nets — learn by playing, not reading walls of text.', url: 'https://ncase.me', tags: ['rare', 'free'] },
+  { category: 'meta-thinking', name: 'Slate Star Codex Archive', desc: 'Scott Alexander\'s earlier essays — psychiatry, philosophy, AI risk, and culture. Dense, humane, and free; precursor to Astral Codex Ten.', url: 'https://slatestarcodex.com', tags: ['rare', 'free'] },
+  { category: 'meta-thinking', name: 'David Deutsch — Constructor Theory', desc: 'Oxford physicist. Free talks and writings on knowledge creation, optimism, and the multiverse — upgrades how you think about learning itself.', url: 'https://www.daviddeutsch.org.uk', tags: ['rare', 'free'] },
 ];

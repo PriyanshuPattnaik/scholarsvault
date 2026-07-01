@@ -10,8 +10,8 @@ import { SignalResourceBrowser } from './SignalResourceBrowser';
 type SignalView = 'roadmap' | 'resources' | 'gear';
 
 const SUB_VIEWS: { id: SignalView; label: string }[] = [
-  { id: 'roadmap', label: 'Roadmap' },
-  { id: 'resources', label: 'Resources' },
+  { id: 'roadmap', label: 'Prodigy Path' },
+  { id: 'resources', label: 'Resource Hub' },
   { id: 'gear', label: 'Pro Gear Lists' },
 ];
 
@@ -23,9 +23,9 @@ export function SignalChainTab() {
     <div>
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-border-subtle pb-4">
         <div>
-          <h2 className="text-2xl font-serif italic text-sepia">Prodigy Signal Chain</h2>
+          <h2 className="text-2xl font-serif italic text-sepia">The Studio</h2>
           <p className="text-xs text-sepia/60 font-serif">
-            Guitar · ears · FOH · stream · DaVinci — parallel with JEE
+            Guitar · ears · FOH · stream · DaVinci — prodigy path parallel with exams
           </p>
         </div>
         <div className="flex gap-1 bg-paper border border-border-subtle p-0.5 rounded-sm">

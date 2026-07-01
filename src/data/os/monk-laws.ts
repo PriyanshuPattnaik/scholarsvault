@@ -7,7 +7,7 @@ export const MONK_LAWS: MonkLaw[] = [
   { id: 4, title: 'Parallel Ambition Tracks', text: 'Study finance, math, and faith alongside technical coding blocks. These compound into decision quality over 40 years.' },
   { id: 5, title: 'Mathematic-CS Flywheel', text: 'JEE Vectors are machine learning geometries. Calculus is backprop. Treat all quantitative tracks as a unified subject.' },
   { id: 6, title: 'Build and Document in Public', text: 'Log every milestone, failed experiment, or GitHub push. Your personal transformative arc is an undeniable signal.' },
-  { id: 7, title: 'Protect the 09:00 Block', text: 'The first 90 minutes set the entire cognitive trajectory of your day. No Slack, no emails, no phone. Hardest work first.' },
+  { id: 7, title: 'Protect the 09:00 Block', text: 'Wake at 09:00. The first 90 minutes of study set the entire cognitive trajectory. No Slack, no emails, no phone. Hardest JEE problems first.' },
   { id: 8, title: 'Optimize for Absolute Slope', text: 'Your starting point or past failures do not define your terminal value. Slope beats starting height over 48 months.' },
   { id: 9, title: 'Single Flywheel Connection', text: 'Do not treat startup features and your theoretical CS study as competitors. They are the same time invested twice.' },
   { id: 10, title: 'Faith Underpins the System', text: 'Use daily biometric reset time or audio commuting blocks to feed your deep theology. Faith is the core OS, not an app.' },

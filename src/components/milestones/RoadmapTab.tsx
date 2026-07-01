@@ -7,8 +7,8 @@ export function RoadmapTab() {
 
   return (
     <MilestoneTrack
-      title="12-Month Alignment Target"
-      subtitle="Check milestones as you materialize them"
+      title="Academic & Startup Alignment"
+      subtitle="JEE · A-Levels · NIOS · YC · UCAS — check when materialized"
       milestones={MILESTONES}
       completedIds={completed}
       onToggle={toggle}

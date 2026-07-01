@@ -27,8 +27,10 @@ export function VaultTab() {
     <div>
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-border-subtle pb-4">
         <div>
-          <h2 className="text-2xl font-serif italic text-sepia">Computation &amp; Wisdom Ledger</h2>
-          <p className="text-xs text-sepia/60 font-serif">Math · CS · ML · faith · finance · meta-thinking</p>
+          <h2 className="text-2xl font-serif italic text-sepia">The Cave</h2>
+          <p className="text-xs text-sepia/60 font-serif">
+            Scholar resources — CS · faith · finance · meta-thinking. Multimedia lives in The Studio.
+          </p>
         </div>
         <SearchInput
           value={searchQuery}

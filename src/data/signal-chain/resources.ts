@@ -26,6 +26,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.presonus.com/en-IN/learn/technical-articles',
     tags: ['free'],
   },
+  {
+    section: 'foundations',
+    category: 'foundations',
+    name: 'Ethan Winer — The Audio Expert',
+    desc: 'Free articles and videos debunking audio myths with measurements — EQ, room treatment, and plugin marketing cut through. Rare evidence-based audio literacy.',
+    url: 'https://www.ethanwiner.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'foundations',
+    category: 'foundations',
+    name: 'Sound Foundations (Pro Tools Expert)',
+    desc: 'Free long-form articles on gain structure, metering, and mixing fundamentals from working pros — deeper than YouTube, more accessible than textbooks.',
+    url: 'https://www.pro-tools-expert.com/production-expert-1/sound-foundations',
+    tags: ['rare', 'free'],
+  },
 
   // 02 — microphone theory
   {
@@ -60,6 +76,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.dpamicrophones.com/mic-university',
     tags: ['rare', 'free'],
   },
+  {
+    section: 'mics',
+    category: 'mics',
+    name: 'Recording Hacks — Mic Placement',
+    desc: 'Free illustrated guides to placing mics on vocals, guitars, drums, and rooms — worship-applicable placement logic without expensive gear.',
+    url: 'https://recordinghacks.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'mics',
+    category: 'mics',
+    name: 'Lewitt Audio University',
+    desc: 'Free video courses on condenser vs dynamic, stereo techniques, and home-studio vocal chains — manufacturer content that is genuinely educational.',
+    url: 'https://www.lewitt-audio.com/university',
+    tags: ['rare', 'free'],
+  },
 
   // 03 — mixing console
   {
@@ -85,6 +117,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     desc: 'Successor to Syn-Aud-Con, the training body that shaped modern professional live sound education. Some paid, but their free articles and webinar archive on gain structure and EQ are as technically serious as it gets.',
     url: 'https://www.prosoundtraining.com',
     tags: ['rare'],
+  },
+  {
+    section: 'console',
+    category: 'console',
+    name: 'Yamaha Training — Live Sound',
+    desc: 'Free manufacturer training on gain structure, monitor mixing, and digital console workflows — brand-agnostic theory applicable to X32, SQ, and CL series.',
+    url: 'https://www.youtube.com/@YamahaProAudio',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'console',
+    category: 'console',
+    name: 'Allen & Heath Video Training',
+    desc: 'Free deep dives on SQ and dLive consoles — aux routing, scenes, and FX sends explained on real worship and tour desks.',
+    url: 'https://www.allen-heath.com/training/',
+    tags: ['rare', 'free'],
   },
 
   // 04 — live sound & church-specific mixing
@@ -118,6 +166,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     name: 'Behind The Mixer',
     desc: 'A blog written specifically for volunteer church sound techs — plain-language breakdowns of feedback, monitor mixing, and working with worship teams pastorally, not just technically. Rare in that it treats the human side of the booth as seriously as the gear.',
     url: 'https://www.behindthemixer.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'live',
+    category: 'live',
+    name: 'Kettner Creative — Live Sound',
+    desc: 'Free YouTube series on live mixing, wireless systems, and stage setup for churches and venues — volunteer-friendly pacing with pro techniques.',
+    url: 'https://www.youtube.com/@KettnerCreative',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'live',
+    category: 'live',
+    name: 'Church Sound Podcast',
+    desc: 'Interviews with touring and church FOH engineers on IEMs, console choice, and team leadership — rare long-form conversations not on YouTube.',
+    url: 'https://churchsoundpodcast.com',
     tags: ['rare', 'free'],
   },
 
@@ -154,6 +218,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://ruahcreativehouse.org/blog/church-livestream-setup-guide/',
     tags: ['rare', 'free'],
   },
+  {
+    section: 'stream',
+    category: 'stream',
+    name: 'StreamGeeks',
+    desc: 'Free tutorials on OBS, vMix, and church streaming workflows — encoder settings, bitrate, and multi-camera sync explained for non-engineers.',
+    url: 'https://www.youtube.com/@StreamGeeks',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'stream',
+    category: 'stream',
+    name: 'Church Training Academy (YouTube)',
+    desc: 'Free church tech training on cameras, switchers, and volunteer team building — practical Sunday-morning troubleshooting focus.',
+    url: 'https://www.youtube.com/@ChurchTrainingAcademy',
+    tags: ['rare', 'free'],
+  },
 
   // 06 — propresenter & ndi
   {
@@ -178,6 +258,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     name: 'CMG — 30 Real Church Streaming Setups',
     desc: 'Exactly what it sounds like — 30 real churches\' full gear lists (switcher, cameras, encoder, console, ProPresenter setup) laid out side by side. The fastest way to see the range from "budget volunteer setup" to "broadcast-grade" in one page.',
     url: 'https://www.churchmotiongraphics.com/blog/30-real-examples-of-live-stream-setups-used-in-churches/',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'propresenter',
+    category: 'propresenter',
+    name: 'Renewed Vision — Learn ProPresenter',
+    desc: 'Official free tutorial library — lyrics routing, stage display, NDI output, and MIDI triggers for worship playback integration.',
+    url: 'https://renewedvision.com/support/learn/',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'propresenter',
+    category: 'propresenter',
+    name: 'ProContent — Free Worship Media',
+    desc: 'Free motion backgrounds and countdowns for churches — study how pro graphics packages are structured before building your own in Resolve.',
+    url: 'https://www.procontent.net',
     tags: ['rare', 'free'],
   },
 
@@ -205,6 +301,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     desc: 'Chord charts, lead sheets, and Nashville Number System charts for essentially every major worship song, pre-transposed to any key. Worth it once you\'re leading real sets — turns "figure out the song" into "study how it was arranged."',
     url: 'https://www.praisecharts.com',
     tags: ['paid'],
+  },
+  {
+    section: 'gearlist',
+    category: 'gearlist',
+    name: 'ChurchTechToday — Gear Guides',
+    desc: 'Free buyer guides and budget-tier equipment lists for church audio, video, and streaming — real church price points not tour-rig fantasies.',
+    url: 'https://churchtechtoday.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'gearlist',
+    category: 'gearlist',
+    name: 'Sweetwater — Church Buying Guides',
+    desc: 'Free curated gear lists for worship bands, streaming, and portable PA — doubles as education on what each product category actually does.',
+    url: 'https://www.sweetwater.com/insync/category/church/',
+    tags: ['rare', 'free'],
   },
 
   // 08 — ear training & nns
@@ -248,6 +360,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.openmusictheory.com',
     tags: ['rare', 'free'],
   },
+  {
+    section: 'ear',
+    category: 'ear',
+    name: 'Perfect Ear (App)',
+    desc: 'Free mobile ear trainer — intervals, chords, scales, and rhythm dictation. Run on phone during commute blocks alongside Functional Ear Trainer.',
+    url: 'https://www.perfect-ear.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'ear',
+    category: 'ear',
+    name: 'SoundGym',
+    desc: 'Gamified EQ, compression, and level-matching drills — trains production ears separately from harmonic ear training. Free daily workouts.',
+    url: 'https://www.soundgym.co',
+    tags: ['rare', 'free'],
+  },
 
   // 09 — forums
   {
@@ -282,6 +410,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.reddit.com/r/livesound/',
     tags: ['forum', 'free'],
   },
+  {
+    section: 'forum',
+    category: 'forum',
+    name: 'r/audioengineering',
+    desc: 'Studio and live engineers on mixing, acoustics, and gear — searchable archive of real troubleshooting threads.',
+    url: 'https://www.reddit.com/r/audioengineering/',
+    tags: ['rare', 'forum', 'free'],
+  },
+  {
+    section: 'forum',
+    category: 'forum',
+    name: 'r/videoengineering',
+    desc: 'Broadcast engineers on SDI, NDI, color pipelines, and church AV — rare pro video depth on Reddit.',
+    url: 'https://www.reddit.com/r/videoengineering/',
+    tags: ['rare', 'forum', 'free'],
+  },
 
   // 10 — free courses
   {
@@ -307,6 +451,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     desc: 'Search "audio engineering," "live sound," and "Ableton Live" directly on Coursera — university and industry-partner courses on acoustics, signal processing, and DAW workflow appear regularly. Use your subscription here before paying for anything elsewhere.',
     url: 'https://www.coursera.org/courses?query=audio%20engineering',
     tags: ['core'],
+  },
+  {
+    section: 'courses',
+    category: 'courses',
+    name: 'Produce Like A Pro (YouTube)',
+    desc: 'Warren Huart\'s free mixing and recording tutorials with multi-platinum engineers — vocal chains, drum sounds, and analog workflow on a budget.',
+    url: 'https://www.youtube.com/@ProduceLikeAPro',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'courses',
+    category: 'courses',
+    name: 'Berklee Online — Free Handouts',
+    desc: 'Free downloadable PDFs on music theory, ear training, and production basics from Berklee faculty — sampler before Coursera specializations.',
+    url: 'https://online.berklee.edu/takenote',
+    tags: ['rare', 'free'],
   },
 
   // 11 — guitar prodigy
@@ -358,6 +518,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.ultimate-guitar.com',
     tags: ['free'],
   },
+  {
+    section: 'guitar',
+    category: 'guitar',
+    name: 'Marty Music',
+    desc: 'Free song tutorials with chord transitions and strumming patterns — bridge between chord charts and JustinGuitar theory.',
+    url: 'https://www.youtube.com/@martymusic',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'guitar',
+    category: 'guitar',
+    name: 'Rick Beato — Guitar',
+    desc: 'Fretboard theory, modes, and CAGED applied to real songs — pair with Signals Music Studio for worship harmonic function.',
+    url: 'https://www.youtube.com/@rickbeato',
+    tags: ['rare', 'free'],
+  },
 
   // 12 — music theory
   {
@@ -406,6 +582,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     name: '12tone (YouTube)',
     desc: 'Short, rigorous theory essays — voice leading, negative harmony, modal interchange. For when you outgrow beginner material.',
     url: 'https://www.youtube.com/@12tone',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'theory',
+    category: 'theory',
+    name: 'MusicTheoryForGuitar.com',
+    desc: 'Free lessons on chord chemistry, modal interchange, and voice leading on guitar — worship-progression focus without piano gatekeeping.',
+    url: 'https://www.musictheoryforguitar.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'theory',
+    category: 'theory',
+    name: 'Rick Beato — Music Theory',
+    desc: 'Deep harmonic analysis of popular and worship songs — hear why bridges lift and pre-choruses tension before resolving.',
+    url: 'https://www.youtube.com/@rickbeato',
     tags: ['rare', 'free'],
   },
 
@@ -457,6 +649,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     desc: 'Real worship leaders discussing transitions, theology of song choice, band drama, and gear on a budget. Search before asking.',
     url: 'https://www.reddit.com/r/WorshipLeading/',
     tags: ['forum', 'free'],
+  },
+  {
+    section: 'worship',
+    category: 'worship',
+    name: 'Loop Community Blog',
+    desc: 'Free articles on click tracks, multitracks, and live worship production — how pro teams run pads, cues, and band communication.',
+    url: 'https://loopcommunity.com/en-us/blog',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'worship',
+    category: 'worship',
+    name: 'Dan Wilt — Worship Artistry',
+    desc: 'Free worship songwriting and prayer-song resources — spiritual formation for leaders who want depth beyond chord charts.',
+    url: 'https://www.danwilt.com',
+    tags: ['rare', 'free'],
   },
 
   // 14 — DAW production
@@ -516,6 +724,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.youtube.com/@InTheMix',
     tags: ['free'],
   },
+  {
+    section: 'production',
+    category: 'production',
+    name: 'White Sea Studio (YouTube)',
+    desc: 'Mixing philosophy and brutal honesty on home-studio production — ear training for what "good" actually sounds like before buying plugins.',
+    url: 'https://www.youtube.com/@WhiteSeaStudio',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'production',
+    category: 'production',
+    name: 'Bedroom Producers Blog',
+    desc: 'Free articles on free VSTs, sample libraries, and laptop production workflows — curated gear for zero-budget worship producers.',
+    url: 'https://bedroomproducersblog.com',
+    tags: ['rare', 'free'],
+  },
 
   // 15 — mixing & mastering
   {
@@ -565,6 +789,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     desc: 'Industry-standard plugin workflows — same Waves servers Hillsong/Elevation use via SoundGrid. Learn plugin categories before buying.',
     url: 'https://www.youtube.com/@WavesAudio',
     tags: ['free'],
+  },
+  {
+    section: 'mastering',
+    category: 'mastering',
+    name: 'Ian Shepherd — Production Advice',
+    desc: 'Free mastering and mixing articles on LUFS, loudness war, and translation to streaming — worship release targets explained clearly.',
+    url: 'https://productionadvice.co.uk',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'mastering',
+    category: 'mastering',
+    name: 'Mastering The Mix — Articles',
+    desc: 'Free educational content on REFERENCE, LEVELS, and spectral balance — learn mastering concepts before buying their tools.',
+    url: 'https://www.masteringthemix.com/blogs/learn',
+    tags: ['rare', 'free'],
   },
 
   // 16 — DaVinci Resolve
@@ -616,6 +856,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.youtube.com/@FilmRiot',
     tags: ['free'],
   },
+  {
+    section: 'davinci',
+    category: 'davinci',
+    name: 'Casey Faris — Resolve',
+    desc: 'Free beginner-to-advanced DaVinci tutorials — color wheels, nodes, and Fairlight audio for church editors on a budget.',
+    url: 'https://www.youtube.com/@CaseyFaris',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'davinci',
+    category: 'davinci',
+    name: 'Darren Mostyn — Resolve Training',
+    desc: 'Professional colorist free training on scopes, HDR, and delivery — worship livestream grade polish without a paid course.',
+    url: 'https://www.youtube.com/@DarrenMostyn',
+    tags: ['rare', 'free'],
+  },
 
   // 17 — iPhone cinematography
   {
@@ -666,6 +922,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.youtube.com/@learnlightroom',
     tags: ['free'],
   },
+  {
+    section: 'iphone',
+    category: 'iphone',
+    name: 'Brandon Li — Mobile Filmmaking',
+    desc: 'Free tutorials on gimbal choreography, location scouting, and edit rhythm on phone — cinematic church B-roll without a crew.',
+    url: 'https://www.youtube.com/@brandonli',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'iphone',
+    category: 'iphone',
+    name: 'Sean Kitching — Mobile Video',
+    desc: 'Practical iPhone lighting, ND filters, and exposure for run-and-gun documentary style — testimony and worship filming.',
+    url: 'https://www.youtube.com/@SeanKitching',
+    tags: ['rare', 'free'],
+  },
 
   // 18 — spiritual leadership
   {
@@ -706,6 +978,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     name: 'Faith Driven Entrepreneur',
     desc: 'Stewardship of skills — your CS + multimedia stack as vocation serving the church and kingdom, not personal brand.',
     url: 'https://www.faithdrivenentrepreneur.org',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'spiritual',
+    category: 'spiritual',
+    name: 'The Village Church — Resources',
+    desc: 'Free sermons and worship-leader resources from Matt Chandler\'s ministry — gospel-centered team culture and song selection theology.',
+    url: 'https://www.thevillagechurch.net/resources',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'spiritual',
+    category: 'spiritual',
+    name: '9Marks — Worship',
+    desc: 'Free articles on biblical worship, song content, and congregational singing — guards against performance-first church culture.',
+    url: 'https://www.9marks.org/topic/worship/',
     tags: ['rare', 'free'],
   },
 
@@ -750,6 +1038,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     url: 'https://www.coursera.org/learn/film-production',
     tags: ['core'],
   },
+  {
+    section: 'roadmap',
+    category: 'roadmap',
+    name: 'MIT OpenCourseWare — Music & Audio',
+    desc: 'Free university courses on acoustics, signal processing, and music cognition — CS-brain depth for the audio physics track.',
+    url: 'https://ocw.mit.edu/search/?q=audio',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'roadmap',
+    category: 'roadmap',
+    name: 'Google AI — Live Music Transformer',
+    desc: 'Free research demos and notebooks on ML + music generation — optional CS crossover once production basics are solid.',
+    url: 'https://magenta.tensorflow.org',
+    tags: ['rare', 'free'],
+  },
 
   // 20 — audio physics
   {
@@ -774,6 +1078,22 @@ export const SIGNAL_RESOURCE_INPUTS: SignalResourceInput[] = [
     name: 'DSP Guide (free book)',
     desc: 'dspguide.com — digital signal processing from samples to FFT. For when you want to understand plugins at the code level (CS + audio intersection).',
     url: 'https://www.dspguide.com',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'physics',
+    category: 'physics',
+    name: 'McGill — Psychoacoustics Lectures',
+    desc: 'Free university lecture materials on how humans perceive pitch, loudness, and timbre — bridges neuroscience to mixing decisions.',
+    url: 'https://www.mcgill.ca/music/research/research-areas/psychology-music',
+    tags: ['rare', 'free'],
+  },
+  {
+    section: 'physics',
+    category: 'physics',
+    name: 'Audio Precision — Learning Center',
+    desc: 'Free technical papers on measurement, THD, and frequency response — understand what analyzers show when you tune a room.',
+    url: 'https://www.ap.com/kb',
     tags: ['rare', 'free'],
   },
 ];

@@ -44,4 +44,5 @@ export const SIGNAL_FILTER_CATEGORIES: SignalFilterCategory[] = [
   { id: 'mastering', label: 'Mix / Master' },
   { id: 'spiritual', label: 'Spiritual Lead' },
   { id: 'roadmap', label: 'Roadmap' },
+  { id: 'physics', label: 'Audio Physics' },
 ];
