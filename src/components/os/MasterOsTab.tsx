@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertTriangle, ShieldCheck, Users } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { BLOCKERS } from '../../data/os/blockers';
 import { MONK_LAWS } from '../../data/os/monk-laws';
 import { SCHEDULES } from '../../data/os/schedules';
@@ -9,170 +9,148 @@ import {
   WEEKLY_RHYTHM,
   YOUR_COORDINATION,
 } from '../../data/os/zaron-coordination';
+import { HudPanel } from '../jarvis/HudPanel';
 
 const SCHEDULE_DAYS = ['mwf', 'tts', 'sun'] as const;
 
 const BLOCK_COLORS: Record<string, string> = {
-  sleep: 'border-sepia bg-sepia/5 text-sepia',
-  alevel: 'border-indigo-600 bg-indigo-50/50 text-indigo-900',
-  startup: 'border-emerald-600 bg-emerald-50/50 text-emerald-900',
-  jee: 'border-rose-600 bg-rose-50/50 text-rose-900',
-  body: 'border-sky-600 bg-sky-50/50 text-sky-900',
-  research: 'border-purple-600 bg-purple-50/50 text-purple-900',
+  sleep: 'border-hud-dim/50 bg-hud-dim/5 text-hud-muted',
+  alevel: 'border-hud-violet/40 bg-hud-violet/5 text-hud-violet',
+  startup: 'border-hud-success/40 bg-hud-success/5 text-hud-success',
+  jee: 'border-hud-rose/40 bg-hud-rose/5 text-hud-rose',
+  body: 'border-hud-blue/40 bg-hud-blue/5 text-hud-blue',
+  research: 'border-hud-cyan/40 bg-hud-cyan/5 text-hud-cyan',
 };
 
 export function MasterOsTab() {
   const [scheduleTab, setScheduleTab] = useState<string>('mwf');
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-2 space-y-8">
-        <section className="bg-paper p-6 border border-border-subtle rounded-xs">
-          <div className="flex items-center justify-between border-b border-border-subtle pb-4 mb-6">
-            <div>
-              <h3 className="text-xl font-serif text-ink tracking-tight font-semibold">Daily Tracker</h3>
-              <p className="text-xs text-sepia font-serif italic">
-                09:00 study → 18:00 gym → 19:30 Zaron → 02:00 Studio → 03:00 sleep
-              </p>
-            </div>
-            <div className="flex gap-1 bg-cream border border-border-subtle p-0.5 rounded-sm">
+    <div className="space-y-4">
+      <div>
+        <p className="text-[10px] font-mono text-hud-cyan uppercase tracking-widest mb-1">Module 02</p>
+        <h2 className="text-2xl font-mono font-bold text-hud-text text-glow">MASTER OS</h2>
+        <p className="text-xs text-hud-muted font-mono mt-1">09:00 study → 18:00 gym → 19:30 Zaron → 02:00 Studio → 03:00 sleep</p>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+        <div className="xl:col-span-2 space-y-4">
+          <HudPanel title="Daily Tracker" subtitle="Coaching anchors & deep focus blocks">
+            <div className="flex gap-1 mb-4">
               {SCHEDULE_DAYS.map((day) => (
                 <button
                   key={day}
                   type="button"
                   onClick={() => setScheduleTab(day)}
-                  className={`px-3 py-1 text-[10px] font-mono uppercase tracking-wider rounded-xs transition-all ${
-                    scheduleTab === day ? 'bg-sepia text-white' : 'text-sepia hover:bg-black/5'
+                  className={`px-3 py-1 text-[10px] font-mono uppercase tracking-wider rounded-sm border transition-all ${
+                    scheduleTab === day
+                      ? 'border-hud-cyan text-hud-cyan bg-hud-cyan/10'
+                      : 'border-hud-border text-hud-muted hover:text-hud-text'
                   }`}
                 >
                   {day}
                 </button>
               ))}
             </div>
-          </div>
-          <div className="space-y-4">
-            {SCHEDULES[scheduleTab]?.map((block, idx) => (
-              <div
-                key={idx}
-                className={`flex gap-4 border-l-2 p-3 ${BLOCK_COLORS[block.type] || 'border-border-subtle'} rounded-r-xs bg-cream/30`}
-              >
-                <div className="font-mono text-xs font-semibold whitespace-nowrap pt-0.5 w-24">{block.time}</div>
-                <div>
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-tight">{block.title}</h4>
-                  <p className="text-xs text-sepia/80 font-serif italic mt-0.5">{block.desc}</p>
+            <div className="space-y-2 max-h-[480px] overflow-y-auto pr-1">
+              {SCHEDULES[scheduleTab]?.map((block, idx) => (
+                <div
+                  key={idx}
+                  className={`flex gap-3 border-l-2 p-2.5 rounded-r-sm ${BLOCK_COLORS[block.type] || 'border-hud-border'}`}
+                >
+                  <div className="font-mono text-[10px] font-semibold whitespace-nowrap w-28 text-hud-muted">{block.time}</div>
+                  <div>
+                    <h4 className="text-[11px] font-mono font-bold uppercase text-hud-text">{block.title}</h4>
+                    <p className="text-[11px] text-hud-muted mt-0.5 leading-relaxed">{block.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </HudPanel>
 
-        <section className="bg-paper p-6 border border-border-subtle rounded-xs">
-          <div className="border-b border-border-subtle pb-4 mb-6">
-            <h3 className="text-xl font-serif text-ink tracking-tight font-semibold flex items-center gap-2">
-              <Users size={18} className="text-sepia" /> Zaron Coordination Hub
-            </h3>
-            <p className="text-xs text-sepia font-serif italic mt-1">{TIMEZONE_NOTE}</p>
-          </div>
-
-          <div className="p-4 bg-emerald-50/40 border border-emerald-200/60 rounded-xs mb-6">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-ink mb-2">
-              {YOUR_COORDINATION.title}
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px]">
-              <div>
-                <p className="font-mono text-[10px] uppercase text-sepia mb-1">You own</p>
-                <ul className="space-y-1 text-sepia font-serif italic">
+          <HudPanel title="Zaron Coordination Hub" subtitle={TIMEZONE_NOTE}>
+            <div className="p-3 border border-hud-success/30 bg-hud-success/5 rounded-sm mb-4">
+              <h4 className="text-[10px] font-mono font-bold uppercase text-hud-success mb-2">{YOUR_COORDINATION.title}</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] text-hud-muted">
+                <div>
+                  <p className="font-mono text-[9px] uppercase text-hud-dim mb-1">You own</p>
                   {YOUR_COORDINATION.owns.map((item) => (
-                    <li key={item}>→ {item}</li>
+                    <p key={item} className="text-hud-text">→ {item}</p>
                   ))}
-                </ul>
-              </div>
-              <div>
-                <p className="font-mono text-[10px] uppercase text-sepia mb-1">You delegate</p>
-                <ul className="space-y-1 text-sepia font-serif italic">
+                </div>
+                <div>
+                  <p className="font-mono text-[9px] uppercase text-hud-dim mb-1">You delegate</p>
                   {YOUR_COORDINATION.delegates.map((item) => (
-                    <li key={item}>→ {item}</li>
+                    <p key={item}>→ {item}</p>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {COORDINATION_ROLES.map((role) => (
-              <div key={role.partner} className="p-4 bg-cream/35 border border-border-subtle/60 rounded-xs">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-ink mb-1">
-                  {role.partner}
-                </h4>
-                <p className="text-[10px] text-sepia/70 font-mono mb-2">{role.school}</p>
-                <p className="text-[11px] text-sepia font-serif italic mb-2">
-                  <strong className="text-ink">Focus:</strong> {role.focus.join(' · ')}
-                </p>
-                <p className="text-[10px] text-sepia/80 font-serif italic">
-                  Async: {role.asyncHours}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-[11px] font-serif">
-              <thead>
-                <tr className="border-b border-border-subtle text-left font-mono text-[10px] uppercase text-sepia">
-                  <th className="py-2 pr-4">Day</th>
-                  <th className="py-2 pr-4">You</th>
-                  <th className="py-2 pr-4">GT</th>
-                  <th className="py-2">WashU</th>
-                </tr>
-              </thead>
-              <tbody className="text-sepia italic">
-                {WEEKLY_RHYTHM.map((row) => (
-                  <tr key={row.day} className="border-b border-border-subtle/40">
-                    <td className="py-2 pr-4 font-mono text-ink not-italic">{row.day}</td>
-                    <td className="py-2 pr-4">{row.you}</td>
-                    <td className="py-2 pr-4">{row.gt}</td>
-                    <td className="py-2">{row.washu}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="bg-paper p-6 border border-border-subtle rounded-xs">
-          <h3 className="text-xl font-serif text-ink tracking-tight font-semibold mb-4 flex items-center gap-2">
-            <AlertTriangle size={18} className="text-rose-600" /> Blocker Elimination Logs
-          </h3>
-          <div className="divide-y divide-border-subtle">
-            {BLOCKERS.map((b) => (
-              <div key={b.title} className="py-4 first:pt-0 last:pb-0">
-                <h4 className="text-sm font-mono font-bold text-ink">{b.title}</h4>
-                <p className="text-xs text-rose-800 font-serif italic mt-1">⚠️ {b.problem}</p>
-                <p className="text-xs text-emerald-800 font-serif mt-1">✓ {b.fix}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-
-      <aside>
-        <div className="bg-paper p-6 border border-border-subtle rounded-xs sticky top-28">
-          <h3 className="text-lg font-serif text-ink tracking-tight font-bold mb-4 flex items-center gap-2">
-            <ShieldCheck size={18} className="text-sepia" /> Monk Laws
-          </h3>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-2 no-scrollbar">
-            {MONK_LAWS.map((law) => (
-              <div key={law.id} className="border-b border-border-subtle/40 pb-3 last:border-0 last:pb-0">
-                <div className="flex gap-2 items-baseline">
-                  <span className="font-serif italic text-sepia text-xs font-bold leading-none">{law.id}.</span>
-                  <h4 className="font-mono font-bold text-xs leading-tight text-ink uppercase tracking-tight">{law.title}</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+              {COORDINATION_ROLES.map((role) => (
+                <div key={role.partner} className="p-3 border border-hud-border bg-hud-surface rounded-sm">
+                  <h4 className="text-[10px] font-mono font-bold uppercase text-hud-cyan">{role.partner}</h4>
+                  <p className="text-[9px] text-hud-dim font-mono">{role.school}</p>
+                  <p className="text-[11px] text-hud-muted mt-2">{role.focus.join(' · ')}</p>
                 </div>
-                <p className="text-xs text-sepia/85 font-serif italic leading-relaxed mt-1">{law.text}</p>
+              ))}
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-[10px] font-mono">
+                <thead>
+                  <tr className="border-b border-hud-border text-hud-cyan uppercase">
+                    <th className="text-left py-2 pr-3">Day</th>
+                    <th className="text-left py-2 pr-3">You</th>
+                    <th className="text-left py-2 pr-3">GT</th>
+                    <th className="text-left py-2">WashU</th>
+                  </tr>
+                </thead>
+                <tbody className="text-hud-muted">
+                  {WEEKLY_RHYTHM.map((row) => (
+                    <tr key={row.day} className="border-b border-hud-border/30">
+                      <td className="py-2 pr-3 text-hud-text">{row.day}</td>
+                      <td className="py-2 pr-3">{row.you}</td>
+                      <td className="py-2 pr-3">{row.gt}</td>
+                      <td className="py-2">{row.washu}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </HudPanel>
+
+          <HudPanel title="Blocker Elimination" subtitle="Known failure modes + fixes">
+            <div className="divide-y divide-hud-border/40">
+              {BLOCKERS.map((b) => (
+                <div key={b.title} className="py-3 first:pt-0">
+                  <h4 className="text-xs font-mono font-bold text-hud-text flex items-center gap-1.5">
+                    <AlertTriangle size={12} className="text-hud-danger" />
+                    {b.title}
+                  </h4>
+                  <p className="text-[11px] text-hud-danger/80 mt-1">⚠ {b.problem}</p>
+                  <p className="text-[11px] text-hud-success mt-1">✓ {b.fix}</p>
+                </div>
+              ))}
+            </div>
+          </HudPanel>
+        </div>
+
+        <HudPanel title="Monk Laws" subtitle="Operating principles" className="xl:sticky xl:top-20 xl:self-start">
+          <div className="space-y-3 max-h-[70vh] overflow-y-auto pr-1">
+            {MONK_LAWS.map((law) => (
+              <div key={law.id} className="border-b border-hud-border/40 pb-3 last:border-0">
+                <div className="flex gap-2 items-baseline">
+                  <span className="font-mono text-hud-cyan text-[10px] font-bold">{String(law.id).padStart(2, '0')}</span>
+                  <h4 className="font-mono font-bold text-[10px] uppercase text-hud-text tracking-wide">{law.title}</h4>
+                </div>
+                <p className="text-[11px] text-hud-muted leading-relaxed mt-1">{law.text}</p>
               </div>
             ))}
           </div>
-        </div>
-      </aside>
+        </HudPanel>
+      </div>
     </div>
   );
 }

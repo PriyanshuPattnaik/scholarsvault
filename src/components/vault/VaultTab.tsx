@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
 import { VAULT_RESOURCES } from '../../data/resources';
 import { VAULT_CATEGORIES } from '../../data/vault/categories';
-import { CategoryRail } from '../ui/CategoryRail';
-import { ResourceCard } from '../ui/ResourceCard';
-import { SearchInput } from '../ui/SearchInput';
+import { HudPanel } from '../jarvis/HudPanel';
+import { HudSearch } from '../jarvis/HudSearch';
+import { ResourceNode } from '../jarvis/ResourceNode';
 
 export function VaultTab() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -23,51 +22,61 @@ export function VaultTab() {
     });
   }, [activeCategory, searchQuery]);
 
+  const activeCat = VAULT_CATEGORIES.find((c) => c.id === activeCategory);
+
   return (
-    <div>
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-border-subtle pb-4">
-        <div>
-          <h2 className="text-2xl font-serif italic text-sepia">The Cave</h2>
-          <p className="text-xs text-sepia/60 font-serif">
-            Scholar resources — CS · faith · finance · meta-thinking. Multimedia lives in The Studio.
-          </p>
-        </div>
-        <SearchInput
-          value={searchQuery}
-          onChange={setSearchQuery}
-          placeholder="Query names or concepts..."
-        />
+    <div className="space-y-4">
+      <div>
+        <p className="text-[10px] font-mono text-hud-cyan uppercase tracking-widest mb-1">Module 01</p>
+        <h2 className="text-2xl font-mono font-bold text-hud-text text-glow">THE CAVE</h2>
+        <p className="text-xs text-hud-muted font-mono mt-1">
+          Scholar resources — CS · faith · finance · meta-thinking. Multimedia → The Studio.
+        </p>
       </div>
 
-      <CategoryRail categories={VAULT_CATEGORIES} active={activeCategory} onSelect={setActiveCategory} />
+      <HudPanel title="Polymath Resource Ledger" badge={`${filtered.length} / ${VAULT_RESOURCES.length}`}>
+        <div className="space-y-4">
+          <HudSearch value={searchQuery} onChange={setSearchQuery} placeholder="Query scholar nodes..." />
 
-      <AnimatePresence mode="wait">
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((res, idx) => (
-            <ResourceCard key={res.id} resource={res} index={idx} />
-          ))}
-        </motion.div>
-      </AnimatePresence>
+          <div className="flex flex-wrap gap-1.5">
+            {VAULT_CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              const active = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`flex items-center gap-1.5 text-[9px] font-mono px-2.5 py-1.5 rounded-sm border uppercase tracking-wider transition-all ${
+                    active
+                      ? 'border-hud-cyan text-hud-cyan bg-hud-cyan/10'
+                      : 'border-hud-border text-hud-muted hover:border-hud-border-bright hover:text-hud-text'
+                  }`}
+                >
+                  <Icon size={11} />
+                  {cat.name}
+                </button>
+              );
+            })}
+          </div>
 
-      {filtered.length === 0 && (
-        <div className="py-24 text-center">
-          <p className="font-serif italic text-sepia">No resource items matched your parameters.</p>
-          <button
-            type="button"
-            onClick={() => {
-              setActiveCategory('all');
-              setSearchQuery('');
-            }}
-            className="mt-2 text-xs font-mono underline text-sepia hover:text-ink"
-          >
-            Reset directory filters
-          </button>
+          {activeCat && activeCategory !== 'all' && (
+            <p className="text-[10px] font-mono text-hud-dim">
+              Filtering: <span className="text-hud-cyan">{activeCat.name}</span>
+            </p>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3">
+            {filtered.map((res) => (
+              <ResourceNode key={res.id} resource={res} />
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <p className="text-center text-hud-muted font-mono text-xs py-12">No nodes match query.</p>
+          )}
         </div>
-      )}
-
-      <p className="text-center text-[10px] font-mono text-sepia/40 mt-8">
-        {filtered.length} of {VAULT_RESOURCES.length} scholar resources
-      </p>
+      </HudPanel>
     </div>
   );
 }
