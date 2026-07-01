@@ -1,0 +1,43 @@
+import type { ScheduleBlock } from '../../types';
+
+export const SCHEDULES: Record<string, ScheduleBlock[]> = {
+  mwf: [
+    { time: '09:00 - 09:15', type: 'sleep', title: 'System Start & Biometric Audit', desc: 'Hydrate, visual review of the day. No messaging or Slack allowed.' },
+    { time: '09:15 - 13:00', type: 'jee', title: 'CIE & JEE Advanced Block #1', desc: 'Mathematics and Physics past CIE papers. High-focus, timed diagnostic modules.' },
+    { time: '13:00 - 13:45', type: 'sleep', title: 'Refuel & Brain Reset', desc: 'Offline, quiet meal. Complete mental break with zero screen exposure.' },
+    { time: '13:45 - 18:00', type: 'jee', title: 'CIE & JEE Advanced Block #2', desc: 'Chemistry past papers & targeted Cengage question drilling.' },
+    { time: '18:00 - 19:30', type: 'body', title: 'Physical Reset (Gym)', desc: 'Nervous system reboot. Audio logs: listen to professional SaaS or theology audio.' },
+    { time: '19:30 - 20:00', type: 'startup', title: 'US Daily Briefing & Hand-off', desc: 'Post daily tasks in Notion for GT and WashU partners. Review daytime logs.' },
+    { time: '20:00 - 22:30', type: 'startup', title: 'Zaron Build Block #1', desc: 'Deep engineering. Core integration work using Cursor & Claude Code tools.' },
+    { time: '22:30 - 23:30', type: 'startup', title: 'US Live Standup (09:00 AM EST)', desc: 'Synchronized alignment. Reviews of code reviews, blocks, and product objectives.' },
+    { time: '23:30 - 01:00', type: 'startup', title: 'Zaron Build Block #2', desc: 'Developing automation pipelines and optimizing agent workflows.' },
+    { time: '01:00 - 02:00', type: 'startup', title: 'Late Operations Sync (04:30 PM EST)', desc: 'Final review sync addressing live enterprise pilots, US GTM, or investor files.' },
+    { time: '02:00 - 03:00', type: 'research', title: 'Polymath Integration Block', desc: 'Reading historical systems, philosophy, or advanced physics papers to expand decision matrices.' },
+    { time: '03:00 - 09:00', type: 'sleep', title: 'Protected Rest Frame', desc: '6 hours locked sleep cycle. Devices set to DND.' },
+  ],
+  tts: [
+    { time: '09:00 - 09:15', type: 'sleep', title: 'System Start & Biometric Audit', desc: 'Hydrate, check daily targets.' },
+    { time: '09:15 - 13:00', type: 'jee', title: 'CIE & JEE Advanced Block #1', desc: 'In-depth computer science modules and math diagnostics.' },
+    { time: '13:00 - 13:45', type: 'sleep', title: 'Refuel & Decompress', desc: 'Complete offline rest.' },
+    { time: '13:45 - 18:00', type: 'jee', title: 'CIE & JEE Advanced Block #2', desc: 'NIOS board past papers and revision blocks.' },
+    { time: '18:00 - 19:30', type: 'body', title: 'Physical Reset (Gym)', desc: 'Protected reset frame preparing brain for the nighttime sprint.' },
+    { time: '19:30 - 20:00', type: 'startup', title: 'US Daily Briefing & Hand-off', desc: 'Aligning linear developer scripts for co-founders.' },
+    { time: '20:00 - 22:30', type: 'startup', title: 'Zaron Build Block #1', desc: 'Building multi-agent cyclical orchestration nodes.' },
+    { time: '22:30 - 23:30', type: 'startup', title: 'US Live Standup (09:00 AM EST)', desc: 'Coordinating task deliverables and feedback configurations.' },
+    { time: '23:30 - 01:00', type: 'startup', title: 'Zaron Build Block #2', desc: 'Refactoring modular features and validating integrations.' },
+    { time: '01:00 - 02:00', type: 'startup', title: 'Late Operations Sync (04:30 PM EST)', desc: 'Late meeting coordinating GTM metrics and active pilots with WashU/GT.' },
+    { time: '02:00 - 03:00', type: 'research', title: 'Polymath Integration Block', desc: 'Wrestling with deep literature structures, cognitive loops, and models.' },
+    { time: '03:00 - 09:00', type: 'sleep', title: 'Protected Rest Frame', desc: '6 hours deep sleep.' },
+  ],
+  sun: [
+    { time: '09:00 - 09:30', type: 'sleep', title: 'Awake & Biometric Check', desc: 'Uninterrupted natural wakeup cycle.' },
+    { time: '09:30 - 13:00', type: 'startup', title: 'Zaron Architecture Planning', desc: 'Reviewing platform logs, refactoring core engines without code interrupts.' },
+    { time: '13:00 - 14:00', type: 'sleep', title: 'Offline Recovery Meal', desc: 'Biometric rest.' },
+    { time: '14:00 - 17:00', type: 'research', title: 'Deep Literature Audits', desc: 'Synthesizing emerging ML agent workflows inside Overleaf.' },
+    { time: '17:00 - 19:00', type: 'body', title: 'Biometric Reset Walk', desc: 'Recharging reserves under absolute screen-free settings.' },
+    { time: '19:00 - 21:00', type: 'alevel', title: 'A-Level past papers audit', desc: 'Work the hardest 5 quantitative questions encountered during the week.' },
+    { time: '21:00 - 22:30', type: 'startup', title: 'Weekly GTM Alignments', desc: 'Compiling next week\'s product briefs and target lists for co-founders.' },
+    { time: '22:30 - 00:00', type: 'startup', title: 'Sunday Sync (Optional)', desc: 'Quick check-ins establishing baseline goals.' },
+    { time: '00:00 - 09:00', type: 'sleep', title: 'Natural Sleep Loop', desc: 'Locking down solid 9 hours rest before Monday start.' },
+  ],
+};

@@ -27,6 +27,14 @@
   @apply font-sans leading-relaxed;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Custom scrollbar to match the aesthetic */
 ::-webkit-scrollbar {
   width: 6px;

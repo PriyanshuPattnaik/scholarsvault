@@ -1,0 +1,808 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--surface:#111;--surface2:#171717;--border:#222;--border2:#2a2a2a;
+  --text:#F0EDE6;--muted:#666;--dim:#333;
+  --gold:#C9A227;--gold-glow:rgba(201,162,39,0.12);
+  --teal:#1A8C6E;--teal-glow:rgba(26,140,110,0.12);
+  --rose:#C45B5B;--rose-glow:rgba(196,91,91,0.12);
+  --blue:#3A7BD4;--blue-glow:rgba(58,123,212,0.12);
+  --violet:#7B5BD4;--violet-glow:rgba(123,91,212,0.12);
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;line-height:1.6}
+.header{padding:2rem 1.5rem 1.2rem;border-bottom:1px solid var(--border)}
+.header-top{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.title{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-0.02em;color:var(--text)}
+.title em{font-style:italic;color:var(--gold)}
+.sub{font-size:11px;color:var(--muted)}
+.search-row{display:flex;gap:8px;margin:1rem 1.5rem 0}
+.search-wrap{flex:1;position:relative}
+.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:8px 12px;border-radius:4px;outline:none}
+.search-wrap input:focus{border-color:var(--gold)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;padding:1rem 1.5rem 0}
+.ftag{font-size:11px;font-family:'DM Mono',monospace;padding:4px 11px;border-radius:2px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;letter-spacing:.04em}
+.ftag:hover{border-color:var(--border);color:var(--text)}
+.ftag.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.section{padding:1.2rem 1.5rem 0}
+.sec-label{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-bottom:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .15s}
+.card:hover{border-color:var(--border2)}
+.card.gold::before{background:var(--gold-glow)}
+.card.teal::before{background:var(--teal-glow)}
+.card.rose::before{background:var(--rose-glow)}
+.card.blue::before{background:var(--blue-glow)}
+.card.violet::before{background:var(--violet-glow)}
+.card:hover::before{opacity:1}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:5px}
+.card-name{font-family:'Instrument Serif',serif;font-size:14px;line-height:1.3;color:var(--text)}
+.badges{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:9px;padding:2px 6px;border-radius:2px;letter-spacing:.06em;font-weight:500;white-space:nowrap}
+.b-rare{background:rgba(201,162,39,.15);color:var(--gold);border:1px solid rgba(201,162,39,.3)}
+.b-free{background:rgba(26,140,110,.15);color:var(--teal);border:1px solid rgba(26,140,110,.3)}
+.b-forum{background:rgba(123,91,212,.15);color:var(--violet);border:1px solid rgba(123,91,212,.3)}
+.b-pro{background:rgba(196,91,91,.15);color:var(--rose);border:1px solid rgba(196,91,91,.3)}
+.card-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.card-desc strong{color:#aaa;font-weight:500}
+.pill{display:inline-block;font-size:10px;margin-top:5px;padding:2px 8px;border-radius:2px;border:1px solid var(--border2);color:var(--dim);background:transparent}
+.count-bar{font-size:11px;color:var(--muted);padding:.75rem 1.5rem 1.5rem;border-top:1px solid var(--border);margin-top:1.2rem}
+.hidden{display:none}
+.gear-table{width:100%;border-collapse:collapse;margin:.5rem 0 1rem;font-size:11px}
+.gear-table th{text-align:left;color:var(--gold);font-weight:500;padding:6px 10px;border-bottom:1px solid var(--border2);letter-spacing:.04em;font-size:10px;text-transform:uppercase}
+.gear-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--muted)}
+.gear-table td.main{color:var(--text)}
+.note{font-size:10.5px;color:var(--dim);padding:0 1.5rem;margin:.4rem 0 .8rem;line-height:1.5}
+.roadmap{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:0 1.5rem 1rem;padding:1.2rem 1.4rem}
+.roadmap h2{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);margin-bottom:4px}
+.roadmap .rm-sub{font-size:10px;color:var(--muted);margin-bottom:1rem}
+.phase{border-left:2px solid var(--gold);padding:10px 0 10px 14px;margin-bottom:10px}
+.phase:last-child{margin-bottom:0}
+.phase-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:4px}
+.phase-num{font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.phase-title{font-family:'Instrument Serif',serif;font-size:14px;color:var(--text)}
+.phase-when{font-size:10px;color:var(--muted)}
+.phase-body{font-size:11px;color:var(--muted);line-height:1.55}
+.phase-body strong{color:#bbb}
+.phase-out{font-size:10px;color:var(--teal);margin-top:4px}
+.gear-block{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;margin:.5rem 0;font-size:10.5px;color:var(--muted)}
+.gear-block strong{color:var(--text)}
+</style>
+
+<div class="header">
+  <div class="header-top">
+    <div class="title">The <em>Prodigy Signal Chain</em> Vault</div>
+    <div class="sub">guitar · ear training · worship theory · live sound · DAW · DaVinci · iPhone cinema · church stream</div>
+  </div>
+  <div class="sub">customized for: gaming laptop + MIDI keyboard + Epiphone + iPhone — chord-reader → laser ears → FOH engineer → worship leader</div>
+</div>
+
+<div class="roadmap">
+  <h2>The Rare Roadmap — 12-Month Prodigy Arc</h2>
+  <div class="rm-sub">Parallel with JEE part-time. One primary resource per block. Weekly output: one recorded mix, one filmed clip, or one transcribed worship song.</div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 0 · Weeks 1–4</span><span class="phase-title">Hear Before You Touch Gear</span><span class="phase-when">15 min/day ear · 20 min theory</span></div>
+    <div class="phase-body"><strong>Daily:</strong> musictheory.net exercises → Functional Ear Trainer (scale degrees in key). <strong>Read:</strong> Open Music Theory ch.1–4 (intervals, triads, diatonic harmony). <strong>Guitar:</strong> JustinGuitar Grade 1 + learn every note on low E and A strings. <strong>Goal:</strong> hear I–V–vi–IV in any worship song before looking at chords.</div>
+    <div class="phase-out">✓ Output: transcribe 4 worship songs by ear into Nashville numbers only (no chord names)</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 1 · Months 2–3</span><span class="phase-title">Fretboard + Worship Harmony</span><span class="phase-when">30 min guitar · 15 min NNS</span></div>
+    <div class="phase-body"><strong>Guitar:</strong> JustinGuitar CAGED + Music Theory modules. Practice capo logic and transposing on PraiseCharts free previews. <strong>Theory:</strong> Hooktheory I (visual chord function). <strong>Worship:</strong> study why "build" = IV or V, why pre-chorus lifts to vi or ii. Map <em>word → chord change</em> on 10 Hillsong/Elevation tracks.</div>
+    <div class="phase-out">✓ Output: lead one song at church with NNS chart + intentional voicings (no root-position strumming)</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 2 · Months 3–5</span><span class="phase-title">Signal Flow & Virtual Console</span><span class="phase-when">gaming laptop lab</span></div>
+    <div class="phase-body"><strong>Read:</strong> Recording Revolution gain staging series → Sound On Sound fundamentals. <strong>Hands-on:</strong> install X32-Edit + Reaper (free) — route virtual channels, practice gain staging, HPF, EQ, compression, aux sends (pre vs post). <strong>Mics:</strong> Shure Insights full polar-pattern hub. Draw your church's signal chain on paper.</div>
+    <div class="phase-out">✓ Output: diagram + 500-word doc explaining every knob on one channel strip</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 3 · Months 4–6</span><span class="phase-title">DAW Production (Reaper → Ableton)</span><span class="phase-when">MIDI keyboard required</span></div>
+    <div class="phase-body"><strong>Start Reaper</strong> (free, unlimited) — record Epiphone DI, layer MIDI pads from keyboard. <strong>Then Ableton Live trial</strong> — session view for loop-based worship pads. Coursera: Berklee "Music Production" + "Developing Your Musicianship." <strong>FL Studio:</strong> optional for beat design; not primary for worship.</div>
+    <div class="phase-out">✓ Output: recreate one Elevation/Bethel stem layout (drums, bass, pads, arp) in MIDI + one live-ready click track</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 4 · Months 5–7</span><span class="phase-title">Live Church Sound + IEMs</span><span class="phase-when">volunteer at booth</span></div>
+    <div class="phase-body"><strong>Read weekly:</strong> ProSoundWeb Church Sound. <strong>Practice:</strong> Mixing Station tutorials. Study feedback, ring-out, drum mic placement (ChurchLeaders guide). Shadow your church FOH — run scene recall, don't touch master fader first month. MultiTracks University for real pro walkthroughs.</div>
+    <div class="phase-out">✓ Output: mix one full Sunday multitrack from MxU or Churchfront free stems</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 5 · Months 6–9</span><span class="phase-title">Stream Stack (OBS → ATEM → NDI)</span><span class="phase-when">iPhone as cam A</span></div>
+    <div class="phase-body"><strong>OBS</strong> on laptop: scenes, audio routing, NDI input. <strong>Blackmagic Camera app</strong> on iPhone — manual exposure, 180° shutter, white balance. ProPresenter trial + NDI Tools. Study Ruah Creative House tiered church setups. Wire: room audio → interface → OBS (not iPhone mic).</div>
+    <div class="phase-out">✓ Output: 10-min mock service stream (3 scenes, lyrics lower-third, room audio)</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Phase 6 · Months 8–12</span><span class="phase-title">DaVinci + iPhone Cinema + Mastering</span><span class="phase-when">free Resolve</span></div>
+    <div class="phase-body"><strong>DaVinci Resolve free</strong> — edit page → color page (lift/gamma/gain, scopes). Wolfcrow + StudioBinder for framing. Filmic Pro or Blackmagic Camera for LOG on iPhone. <strong>Mastering:</strong> iZotope Ozone Elements or Reaper JSFX limiter — learn LUFS targets (-14 stream, -9 worship release). Adobe Audition for podcast/voice cleanup only.</div>
+    <div class="phase-out">✓ Output: 60-sec cinematic worship B-roll grade + mastered acoustic guitar cover</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">Always On</span><span class="phase-title">Spiritual Leader + CS Brain</span><span class="phase-when">non-negotiable</span></div>
+    <div class="phase-body">Tech serves the room first, stream second. Study <strong>Worship Together</strong> leader devos + Tim Keller on vocation. Your CS skills → automate lyric slides, build stream health dashboards, document signal chains in Notion. <strong>Monk rule:</strong> one output/week — commit, mix, film, or transcribe.</div>
+    <div class="phase-out">✓ You become the person who can play, hear, mix, film, and shepherd — not just operate gear</div>
+  </div>
+
+  <div class="gear-block">
+    <strong>Your starter rig (₹0 extra to begin):</strong> Gaming laptop → Reaper + OBS + DaVinci Resolve + X32-Edit · Epiphone → free Tuner + JustinGuitar · MIDI keyboard → Reaper/Ableton virtual instruments · iPhone → Blackmagic Camera app + Filmic Pro trial · Coursera → Berklee specializations (you already subscribe)
+  </div>
+</div>
+
+<div class="search-row">
+  <div class="search-wrap"><input type="text" id="q" placeholder="search resources..." oninput="go()"></div>
+</div>
+
+<div class="filters" id="ftags">
+  <button class="ftag on" onclick="filt('all',this)">All</button>
+  <button class="ftag" onclick="filt('foundations',this)">Signal Flow</button>
+  <button class="ftag" onclick="filt('mics',this)">Mic Theory</button>
+  <button class="ftag" onclick="filt('console',this)">Console & Mixing</button>
+  <button class="ftag" onclick="filt('live',this)">Live/Church Sound</button>
+  <button class="ftag" onclick="filt('stream',this)">Livestream Gear</button>
+  <button class="ftag" onclick="filt('propresenter',this)">ProPresenter/NDI</button>
+  <button class="ftag" onclick="filt('gearlist',this)">Real Gear Lists</button>
+  <button class="ftag" onclick="filt('ear',this)">Ear Training/NNS</button>
+  <button class="ftag" onclick="filt('forum',this)">Forums & Community</button>
+  <button class="ftag" onclick="filt('courses',this)">Free Courses</button>
+  <button class="ftag" onclick="filt('guitar',this)">Guitar Prodigy</button>
+  <button class="ftag" onclick="filt('theory',this)">Music Theory</button>
+  <button class="ftag" onclick="filt('worship',this)">Worship Leader</button>
+  <button class="ftag" onclick="filt('production',this)">DAW / Production</button>
+  <button class="ftag" onclick="filt('davinci',this)">DaVinci / Color</button>
+  <button class="ftag" onclick="filt('iphone',this)">iPhone Cinema</button>
+  <button class="ftag" onclick="filt('mastering',this)">Mix / Master</button>
+  <button class="ftag" onclick="filt('spiritual',this)">Spiritual Lead</button>
+  <button class="ftag" onclick="filt('roadmap',this)">Roadmap</button>
+</div>
+
+<div id="vault">
+
+<!-- SIGNAL FLOW -->
+<div class="section" data-cat="foundations">
+  <div class="sec-label">01 — signal flow, the thing everything else sits on top of</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://www.recordingrevolution.com')">
+      <div class="card-top"><div class="card-name">Recording Revolution</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Graham Cochrane's free blog/YouTube — the plainest-English explanation of gain staging, EQ, and compression that exists. <strong>Start here before any gear-specific tutorial.</strong> Built for beginners who don't know what they don't know yet.</div>
+      <span class="pill">recordingrevolution.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.soundonsound.com/techniques')">
+      <div class="card-top"><div class="card-name">Sound On Sound — Techniques</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">The oldest and most technically respected audio publication online. <strong>Their "Mix Rescue" and fundamentals series unpack signal flow, gain staging, and console theory at a depth no YouTube channel matches.</strong> Free article archive going back decades.</div>
+      <span class="pill">soundonsound.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.presonus.com/en-IN/learn/technical-articles')">
+      <div class="card-top"><div class="card-name">PreSonus Technical Articles</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Manufacturer-written but gear-agnostic in substance — clean explainers on signal chain, aux sends (pre vs post-fader), buses, and VCA groups. Good second-pass reading once Recording Revolution gives you the vocabulary.</div>
+      <span class="pill">presonus.com/learn</span>
+    </div>
+  </div>
+</div>
+
+<!-- MIC THEORY -->
+<div class="section" data-cat="mics">
+  <div class="sec-label">02 — microphone theory: what, why, where</div>
+  <div class="grid">
+    <div class="card teal" onclick="openLink('https://www.shure.com/en-US/insights')">
+      <div class="card-top"><div class="card-name">Shure Insights / Mic Basics</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Shure practically invented mainstream mic education. <strong>Their polar pattern, dynamic-vs-condenser, and proximity-effect explainers are the industry-standard reference</strong> — most audio schools cite them. Read every article in the "microphone basics" hub.</div>
+      <span class="pill">shure.com/insights</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.churchleaders.com/worship/tech-media/144620-microphones-in-worship-drums.html')">
+      <div class="card-top"><div class="card-name">ChurchLeaders — Mics in Worship (Drums)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Written by a 20-year worship audio veteran specifically for church techs. <strong>A real, usable kick/snare/tom/overhead mic-selection-and-placement guide for a worship kit</strong> — not generic studio advice. This is exactly your gear-audit checklist made concrete.</div>
+      <span class="pill">churchleaders.com</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.sweetwater.com/insync/category/microphones/')">
+      <div class="card-top"><div class="card-name">Sweetwater inSync — Microphones</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Deep buyer's-guide-style articles that double as theory lessons — large vs small diaphragm, ribbon mics, when phantom power matters. Written to help you choose gear, which means it teaches you the underlying "why" as a side effect.</div>
+      <span class="pill">sweetwater.com/insync</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.dpamicrophones.com/mic-university')">
+      <div class="card-top"><div class="card-name">DPA Mic University</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">One of the most technically rigorous free mic-theory resources on the internet — polar patterns explained with actual physics, not just diagrams. Goes further than any beginner needs at first, but is the resource to return to once basics click.</div>
+      <span class="pill">dpamicrophones.com/mic-university</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONSOLE & MIXING -->
+<div class="section" data-cat="console">
+  <div class="sec-label">03 — the mixing console: every knob, decoded</div>
+  <div class="grid">
+    <div class="card blue" onclick="openLink('https://www.behringer.com/downloads.html')">
+      <div class="card-top"><div class="card-name">Behringer X32 Manual + Edit Software</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Download the free X32-Edit software and practice on a virtual console on your gaming laptop</strong> — no hardware needed. The X32/M32 architecture (same Midas preamp lineage as pro touring desks) is what most mid-size churches actually run. This is the single best free hands-on console trainer that exists.</div>
+      <span class="pill">behringer.com/downloads</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.youtube.com/@MixingStation')">
+      <div class="card-top"><div class="card-name">Mixing Station (app + YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free/cheap remote-control app for X32/M32-family consoles used by real touring and church techs to mix from a tablet. Their tutorial content doubles as console-operation training — learn the exact interface you'll meet on a real church desk.</div>
+      <span class="pill">mixingstation.app</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.prosoundtraining.com')">
+      <div class="card-top"><div class="card-name">Pro Sound Training / SynAudCon legacy content</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">Successor to Syn-Aud-Con, the training body that shaped modern professional live sound education. Some paid, but their free articles and webinar archive on gain structure and EQ are as technically serious as it gets.</div>
+      <span class="pill">prosoundtraining.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIVE / CHURCH SOUND -->
+<div class="section" data-cat="live">
+  <div class="sec-label">04 — live sound & church-specific mixing</div>
+  <div class="grid">
+    <div class="card rose" onclick="openLink('https://www.prosoundweb.com/category/church-sound/')">
+      <div class="card-top"><div class="card-name">ProSoundWeb — Church Sound</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>The single best free ongoing resource for exactly your goal.</strong> Written by working church audio engineers for other church techs — IEM mixing, feedback control, drum mic'ing for worship kits, console workflow for volunteer teams. Bookmark, read weekly.</div>
+      <span class="pill">prosoundweb.com/church-sound</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.churchproduction.com')">
+      <div class="card-top"><div class="card-name">Church Production Magazine</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Trade publication covering real church tech deployments — including breakdowns of Elevation Worship and other major ministries' live recording setups, mic lists, and console choices. Read the "gear" and "case study" tags specifically.</div>
+      <span class="pill">churchproduction.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.youtube.com/@ChurchFrontOfHouse')">
+      <div class="card-top"><div class="card-name">Church Front of House (YouTube)</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Search this channel name and similar ("Church Sound Guy," "Behind The Mixer") — a growing niche of creators making free, church-specific live-mixing tutorials aimed squarely at volunteer techs like you, not touring professionals.</div>
+      <span class="pill">youtube.com — search "Church Front of House"</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.behindthemixer.com')">
+      <div class="card-top"><div class="card-name">Behind The Mixer</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">A blog written specifically for volunteer church sound techs — plain-language breakdowns of feedback, monitor mixing, and working with worship teams pastorally, not just technically. Rare in that it treats the human side of the booth as seriously as the gear.</div>
+      <span class="pill">behindthemixer.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIVESTREAM GEAR -->
+<div class="section" data-cat="stream">
+  <div class="sec-label">05 — livestream switchers, cameras & encoders</div>
+  <div class="grid">
+    <div class="card violet" onclick="openLink('https://www.blackmagicdesign.com/products/atemmini')">
+      <div class="card-top"><div class="card-name">Blackmagic ATEM Mini series</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">The de facto standard church streaming switcher. <strong>Mini</strong> (needs OBS to stream) → <strong>Mini Pro ISO</strong> (records every camera separately, auto-builds a DaVinci project) → <strong>Extreme ISO</strong> (8 inputs, multi-view). Learn this exact product line — it's what you'll meet at almost any mid-size church.</div>
+      <span class="pill">blackmagicdesign.com</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://obsproject.com')">
+      <div class="card-top"><div class="card-name">OBS Studio</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free, open-source, industry-standard streaming software. Install it on your gaming laptop now and learn scenes/sources/switching even before you touch real church hardware — the concepts transfer directly to any switcher you'll use later.</div>
+      <span class="pill">obsproject.com</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.blackmagicdesign.com/products/blackmagiccamera')">
+      <div class="card-top"><div class="card-name">Blackmagic Camera app (iPhone)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Turns your iPhone into a manual-control cinema camera</strong> — shutter angle, ISO, white balance, focus peaking, even NDI output on supported models. This is your bridge between "just an iPhone" and real church camera operation. Free.</div>
+      <span class="pill">App Store</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://ruahcreativehouse.org/blog/church-livestream-setup-guide/')">
+      <div class="card-top"><div class="card-name">Ruah Creative House — Church Livestream Setup Guide</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Written by a ministry post-production studio — copy-paste equipment lists at three real budget tiers, full signal-flow diagrams (camera → switcher → encoder → platform), and troubleshooting for the exact problems church teams hit weekly.</div>
+      <span class="pill">ruahcreativehouse.org</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROPRESENTER / NDI -->
+<div class="section" data-cat="propresenter">
+  <div class="sec-label">06 — propresenter, ndi & graphics integration</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://renewedvision.com/propresenter/')">
+      <div class="card-top"><div class="card-name">ProPresenter (free trial)</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">The industry standard for worship lyrics, scripture, and lower-thirds — run by nearly every church including Hillsong and Elevation's production teams. Download the free trial and learn how output is routed via NDI/HDMI into a switcher so online viewers see identical graphics to the room.</div>
+      <span class="pill">renewedvision.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://ndi.video/tools/')">
+      <div class="card-top"><div class="card-name">NDI Tools</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free official toolset from the makers of NDI (Network Device Interface) — the protocol that moves video/graphics over a network instead of physical cables, letting ProPresenter feed a switcher wirelessly. Install and experiment at home before you meet it live.</div>
+      <span class="pill">ndi.video/tools</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.churchmotiongraphics.com/blog/30-real-examples-of-live-stream-setups-used-in-churches/')">
+      <div class="card-top"><div class="card-name">CMG — 30 Real Church Streaming Setups</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Exactly what it sounds like — 30 real churches' full gear lists (switcher, cameras, encoder, console, ProPresenter setup) laid out side by side. <strong>The fastest way to see the range from "budget volunteer setup" to "broadcast-grade" in one page.</strong></div>
+      <span class="pill">churchmotiongraphics.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- REAL GEAR LISTS (Hillsong / Elevation) -->
+<div class="section" data-cat="gearlist">
+  <div class="sec-label">07 — what hillsong & elevation actually run (verified, current)</div>
+  <div class="note">Not a shopping list — a way to recognize the <em>category</em> each piece belongs to, so you know the equivalent tier when you meet it. Console brand matters less than signal-flow fluency: the theory is identical on a Behringer X32 and a $150k DiGiCo.</div>
+  <table class="gear-table">
+    <tr><th>Ministry</th><th>Console (FOH)</th><th>Monitors / IEM</th><th>PA / RF</th><th>Studio / Stream</th></tr>
+    <tr><td class="main">Elevation Worship</td><td>SSL Live L650 / L550 Plus; DiGiCo SD7/SD10 on major recordings</td><td>Shure PSM1000 IEM; Sennheiser G4/G5 wireless</td><td>L-Acoustics K1/K2; d&b audiotechnik subs on tours</td><td>SSL Duality Delta + Pro Tools HDX; Waves TracksLive multitrack; ProPresenter + Resolume</td></tr>
+    <tr><td class="main">Hillsong Worship</td><td>Yamaha Rivage PM / Avid Venue S6L / Midas Pro (tour-dependent); Waves SoundGrid for plugin consistency</td><td>Shure Axient Digital + PSM1000; UE custom IEMs for vocalists</td><td>L-Acoustics K1/K2 (tour); Adamson S-Series (installs)</td><td>Euphonix S5 Fusion → Pro Tools; Blackmagic ATEM Constellation; ProPresenter</td></tr>
+    <tr><td class="main">Bethel Music</td><td>DiGiCo SD10 / SD12; Avid S6L on larger events</td><td>Shure PSM1000; Radial DI everywhere</td><td>d&b V-Series / L-Acoustics ARCS</td><td>Pro Tools; MultiTracks stems standard; Blackmagic URSA broadcast cams</td></tr>
+    <tr><td class="main">Passion / Elevation-style mid church</td><td>Behringer X32 / Midas M32 / Allen & Heath SQ-7</td><td>Shure PSM300/900; Sennheiser ew 100 G4</td><td>QSC K-Series / RCF ART / L-Acoustics A15 (aspirational)</td><td>ATEM Mini Pro ISO; ProPresenter; OBS backup; 2–3 PTZ or iPhone cams</td></tr>
+  </table>
+  <div class="note">Mic locker pattern (worship band): Kick — Shure Beta 52A / Audix D6 · Snare — SM57 top + Beta 57 bottom · Toms — MD421 / e604 · OH — KSM141 / Rode NT5 pair · Bass — DI Radial JDI + amp mic SM57 · Acoustic — DPA 4099 / Neumann KM184 · Vocals — SM58 / Beta 58A / KSM8 · Drum subgroups → stereo bus → FOH. Learn the <em>role</em> of each mic type, not the brand worship budget.</div>
+  <div class="grid">
+    <div class="card teal" onclick="openLink('https://www.multitracks.com')">
+      <div class="card-top"><div class="card-name">MultiTracks.com</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">The industry-standard source for real worship team charts, click tracks, and multitracks — the actual arrangements used by Hillsong, Elevation, Bethel, and Passion. Free tier gives chord charts for many songs; paid unlocks full stems for practicing a real mix.</div>
+      <span class="pill">multitracks.com</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@MultiTracksUniversity')">
+      <div class="card-top"><div class="card-name">MultiTracks University (MxU)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>The closest free thing to "the pros teach you directly."</strong> Real Hillsong/Elevation/Bethel engineers and musicians on camera walking through live mixing, IEM setup, click-track workflow, and arrangement — including an actual recorded Elevation Worship + MxU gear-talk session on FOH mixing.</div>
+      <span class="pill">youtube — MultiTracks University</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.praisecharts.com')">
+      <div class="card-top"><div class="card-name">PraiseCharts</div><div class="badges"><span class="badge b-pro">PAID</span></div></div>
+      <div class="card-desc">Chord charts, lead sheets, and Nashville Number System charts for essentially every major worship song, pre-transposed to any key. Worth it once you're leading real sets — turns "figure out the song" into "study how it was arranged."</div>
+      <span class="pill">praisecharts.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- EAR TRAINING / NNS -->
+<div class="section" data-cat="ear">
+  <div class="sec-label">08 — ear training & the nashville number system</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://www.miles.be/software/1-functional-ear-trainer')">
+      <div class="card-top"><div class="card-name">Functional Ear Trainer</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>The single highest-leverage ear tool for a worship musician.</strong> Free desktop app that trains you to hear scale degrees in context ("that's the 5th of the key") rather than isolated intervals — exactly how worship's functional harmony actually works.</div>
+      <span class="pill">miles.be/software</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.musictheory.net/exercises')">
+      <div class="card-top"><div class="card-name">Musictheory.net Exercises</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free, structured drills for intervals, triads, key signatures, and scale degrees by ear. Use daily as your baseline warm-up before functional ear training — this is where you build raw vocabulary before context training.</div>
+      <span class="pill">musictheory.net</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.teoria.com')">
+      <div class="card-top"><div class="card-name">Teoria</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free ear-training and theory exercises with a more rigorous, conservatory-style bent than musictheory.net — chord identification, harmonic dictation, cadence recognition. Good second tool once basics feel easy.</div>
+      <span class="pill">teoria.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.worshiptogether.com')">
+      <div class="card-top"><div class="card-name">Worship Together — NNS & Chart Resources</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free chord charts, lyric sheets, and Nashville Number System guides written specifically for church worship teams — search their resource library for "Nashville Number System" to find the standard reference PDF most worship leaders learn from.</div>
+      <span class="pill">worshiptogether.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.openmusictheory.com')">
+      <div class="card-top"><div class="card-name">Open Music Theory</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free, open-source university-level theory textbook — goes past musictheory.net into real diatonic harmony, chord function (tonic/subdominant/dominant), and voice leading. This is where "what chord goes under what word" theory actually lives.</div>
+      <span class="pill">openmusictheory.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORUMS -->
+<div class="section" data-cat="forum">
+  <div class="sec-label">09 — forums & communities where techs actually talk</div>
+  <div class="grid">
+    <div class="card violet" onclick="openLink('https://www.churchmotiongraphics.com')">
+      <div class="card-top"><div class="card-name">Church Motion Graphics — Facebook Group</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-forum">FORUM</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">40,000+ church tech leaders and volunteers in one group, actively answering real gear/workflow questions. Search "Church Motion Graphics Facebook Group" — this is where you post your actual church's gear-audit questions and get real answers.</div>
+      <span class="pill">facebook group</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://forum.blackmagicdesign.com/')">
+      <div class="card-top"><div class="card-name">Blackmagic Design Forum</div><div class="badges"><span class="badge b-forum">FORUM</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Official forum for ATEM switchers, DaVinci Resolve, and Blackmagic cameras — the exact ecosystem most church streaming setups run on. Staff respond directly. Search before YouTube when you hit a switcher problem.</div>
+      <span class="pill">forum.blackmagicdesign.com</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://gearspace.com/board/live-sound/')">
+      <div class="card-top"><div class="card-name">Gearspace — Live Sound forum</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-forum">FORUM</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Formerly Gearslutz — the most technically serious pro-audio forum on the internet, with a dedicated live sound board. FOH engineers from major touring acts post here. Read before posting; the signal-to-noise ratio rewards patience.</div>
+      <span class="pill">gearspace.com</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.reddit.com/r/livesound/')">
+      <div class="card-top"><div class="card-name">r/livesound</div><div class="badges"><span class="badge b-forum">FORUM</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Working live sound engineers, including church techs, answering practical day-to-day questions — feedback troubleshooting, console recommendations, IEM setup. More casual than Gearspace, faster response times.</div>
+      <span class="pill">reddit.com/r/livesound</span>
+    </div>
+  </div>
+</div>
+
+<!-- FREE COURSES -->
+<div class="section" data-cat="courses">
+  <div class="sec-label">10 — structured free courses (+ what to use coursera for)</div>
+  <div class="grid">
+    <div class="card rose" onclick="openLink('https://www.justinguitar.com')">
+      <div class="card-top"><div class="card-name">JustinGuitar.com</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">The best free structured guitar curriculum online, full stop — CAGED, theory-for-guitarists, and ear training modules, all free, all sequenced properly. Use the Intermediate and Music Theory tracks specifically for your goals.</div>
+      <span class="pill">justinguitar.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.coursera.org/specializations/scoring-music-picture')">
+      <div class="card-top"><div class="card-name">Coursera — Berklee Music Production & Theory</div><div class="badges"><span class="badge b-pro">CORE</span></div></div>
+      <div class="card-desc">Since you already have a subscription: search Coursera for Berklee's "Music Production," "Songwriting," and "Developing Your Musicianship" specializations. This is genuinely rigorous Berklee-faculty content, not a diluted MOOC — worth prioritizing over free YouTube once basics are solid.</div>
+      <span class="pill">coursera.org</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.coursera.org/courses?query=audio%20engineering')">
+      <div class="card-top"><div class="card-name">Coursera — Audio Engineering search</div><div class="badges"><span class="badge b-pro">CORE</span></div></div>
+      <div class="card-desc">Search "audio engineering," "live sound," and "Ableton Live" directly on Coursera — university and industry-partner courses on acoustics, signal processing, and DAW workflow appear regularly. Use your subscription here before paying for anything elsewhere.</div>
+      <span class="pill">coursera.org</span>
+    </div>
+  </div>
+</div>
+
+<!-- GUITAR PRODIGY -->
+<div class="section" data-cat="guitar">
+  <div class="sec-label">11 — guitar prodigy: chord-reader → fretboard surgeon</div>
+  <div class="grid">
+    <div class="card rose" onclick="openLink('https://www.justinguitar.com/guitar-lessons')">
+      <div class="card-top"><div class="card-name">JustinGuitar — Full Curriculum</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Your primary guitar OS.</strong> Grade 1–3 for mechanics, then Intermediate + Music Theory + CAGED modules. Structured, free, and worship-friendly. 15 min daily beats 2-hour weekend binges.</div>
+      <span class="pill">justinguitar.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.justinguitar.com/modules/music-theory')">
+      <div class="card-top"><div class="card-name">JustinGuitar — Practical Music Theory</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Theory taught on guitar neck, not piano-only. Covers intervals on strings, chord construction, and why shapes move — bridges your chord-chart habit to actual understanding.</div>
+      <span class="pill">justinguitar.com/theory</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.youtube.com/@PaulDavids')">
+      <div class="card-top"><div class="card-name">Paul Davids (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Ear-first guitar education — why chords sound emotional, how to voice-lead worship changes, fingerstyle texture for acoustic sets. Watch after Justin's structured blocks.</div>
+      <span class="pill">youtube.com/@PaulDavids</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.youtube.com/@SignalsMusicStudio')">
+      <div class="card-top"><div class="card-name">Signals Music Studio</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Deep theory on guitar — modes, borrowed chords, and "why does this worship song feel huge?" Explains harmonic function better than most paid courses.</div>
+      <span class="pill">youtube — Signals Music Studio</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.fachords.com/guitar-fretboard-trainer/')">
+      <div class="card-top"><div class="card-name">FaChords Fretboard Trainer</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free browser trainer for note names, intervals, and CAGED positions. 5 min daily until you can find any scale degree on Epiphone in under 2 seconds.</div>
+      <span class="pill">fachords.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.ultimate-guitar.com')">
+      <div class="card-top"><div class="card-name">Ultimate Guitar + Transpose</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Chord charts for practice only — <strong>never perform from this.</strong> Use to verify your ear transcriptions, then rewrite in NNS on your own chart.</div>
+      <span class="pill">ultimate-guitar.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- MUSIC THEORY -->
+<div class="section" data-cat="theory">
+  <div class="sec-label">12 — music theory from absolute zero</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://www.hooktheory.com/theorytab')">
+      <div class="card-top"><div class="card-name">Hooktheory — TheoryTab</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc"><strong>See chord function visually.</strong> Thousands of real songs (including worship) with color-coded Roman numerals. Answers "what chord under this word?" faster than any textbook.</div>
+      <span class="pill">hooktheory.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.lightnote.co')">
+      <div class="card-top"><div class="card-name">Lightnote</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Interactive music theory from first principles — sound before notation. Perfect CS-brain entry: concepts as systems, not memorization.</div>
+      <span class="pill">lightnote.co</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://learningmusic.ableton.com')">
+      <div class="card-top"><div class="card-name">Ableton — Learning Music</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free browser course — beats, melody, harmony, song structure. Use your MIDI keyboard here before opening a full DAW. Zero install.</div>
+      <span class="pill">learningmusic.ableton.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.musictheory.net/lessons')">
+      <div class="card-top"><div class="card-name">musictheory.net — Lessons</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Step-by-step notation, scales, chords, progressions. Pair lessons with daily exercises (section 08). The worship leader's arithmetic.</div>
+      <span class="pill">musictheory.net</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://tonedear.com')">
+      <div class="card-top"><div class="card-name">ToneDear / Teoria Ear Drills</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Interval and chord-quality identification by ear. Run after Functional Ear Trainer session — builds raw pitch vocabulary.</div>
+      <span class="pill">tonedear.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.youtube.com/@12tone')">
+      <div class="card-top"><div class="card-name">12tone (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Short, rigorous theory essays — voice leading, negative harmony, modal interchange. For when you outgrow beginner material.</div>
+      <span class="pill">youtube — 12tone</span>
+    </div>
+  </div>
+</div>
+
+<!-- WORSHIP LEADER -->
+<div class="section" data-cat="worship">
+  <div class="sec-label">13 — ideal worship leader: charts, transitions, band language</div>
+  <div class="grid">
+    <div class="card teal" onclick="openLink('https://www.worshiptogether.com/songs')">
+      <div class="card-top"><div class="card-name">Worship Together — Songs + Devos</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Official charts, leader devotionals, and team culture articles. The pastoral side of leading — not just playing correct chords.</div>
+      <span class="pill">worshiptogether.com</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.multitracks.com/chart-builder/')">
+      <div class="card-top"><div class="card-name">MultiTracks Chart Builder</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">Build Nashville Number charts transposable to any key — the format pros use on iPads at Elevation/Hillsong-scale teams. Study their section markers (V1, C, B, Tag).</div>
+      <span class="pill">multitracks.com</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@churchfront')">
+      <div class="card-top"><div class="card-name">Churchfront (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Worship team training gold.</strong> Arrangement, dynamics, electric guitar tones in worship, drum pocket, and "how to lead a song spiritually" — volunteer-friendly, pro-depth.</div>
+      <span class="pill">youtube — Churchfront</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@WorshipTutorials')">
+      <div class="card-top"><div class="card-name">Worship Tutorials</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Song breakdowns, pad layers, click-track setup, and guitar tones for specific worship songs. Reverse-engineer pro arrangements at home.</div>
+      <span class="pill">youtube — Worship Tutorials</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.worshipteam.com')">
+      <div class="card-top"><div class="card-name">WorshipTeam.com / Planning Center</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Scheduling, chart distribution, and team communication. CS you: integrate Planning Center API or automate setlist PDFs — serve your church with code.</div>
+      <span class="pill">planningcenter.com/worship</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.reddit.com/r/WorshipLeading/')">
+      <div class="card-top"><div class="card-name">r/WorshipLeading</div><div class="badges"><span class="badge b-forum">FORUM</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Real worship leaders discussing transitions, theology of song choice, band drama, and gear on a budget. Search before asking.</div>
+      <span class="pill">reddit.com/r/WorshipLeading</span>
+    </div>
+  </div>
+</div>
+
+<!-- DAW PRODUCTION -->
+<div class="section" data-cat="production">
+  <div class="sec-label">14 — DAW production: Reaper → Ableton → FL Studio</div>
+  <div class="grid">
+    <div class="card blue" onclick="openLink('https://www.reaper.fm')">
+      <div class="card-top"><div class="card-name">Reaper (DAW)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Start here on gaming laptop.</strong> Fully featured, unlimited trial, low CPU. Record guitar, MIDI keyboard, mix worship tracks, learn routing before paying for anything.</div>
+      <span class="pill">reaper.fm</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.youtube.com/@REAPERMania')">
+      <div class="card-top"><div class="card-name">REAPER Mania (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Jon — the definitive free Reaper tutorial channel. Routing, recording, FX chains, templates for worship session layout.</div>
+      <span class="pill">youtube — REAPER Mania</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.ableton.com/en/learn/')">
+      <div class="card-top"><div class="card-name">Ableton Learn + Live Lite</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Often bundled free with MIDI controllers. Session view = live worship pads + loops. Official learning path after Reaper basics click.</div>
+      <span class="pill">ableton.com/learn</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.image-line.com/fl-studio-learning/')">
+      <div class="card-top"><div class="card-name">FL Studio Learning</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Pattern-based beat design and melody workflow. Secondary DAW for production experiments — not your live church stack.</div>
+      <span class="pill">image-line.com</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://surge-synthesizer.github.io/')">
+      <div class="card-top"><div class="card-name">Surge XT (Free Synth)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Open-source wavetable synth rivaling Serum for worship pads. Run in Reaper via MIDI keyboard — learn synthesis without paying for Vital/Serum first.</div>
+      <span class="pill">surge-synthesizer.github.io</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.spitfireaudio.com/bbc-symphony-orchestra-discover')">
+      <div class="card-top"><div class="card-name">Spitfire BBC Discover (Free)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free orchestral library — cinematic worship pads and strings. Requires free Spitfire account. CPU-heavy; learn sample libraries on laptop.</div>
+      <span class="pill">spitfireaudio.com</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.youtube.com/@InTheMix')">
+      <div class="card-top"><div class="card-name">In The Mix (YouTube)</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">FL Studio + general production — mixing, mastering basics, sound design. Accessible entry to electronic worship production.</div>
+      <span class="pill">youtube — In The Mix</span>
+    </div>
+  </div>
+</div>
+
+<!-- MIX MASTER -->
+<div class="section" data-cat="mastering">
+  <div class="sec-label">15 — mixing & mastering: laptop to release-ready</div>
+  <div class="grid">
+    <div class="card violet" onclick="openLink('https://www.youtube.com/@MixingWithMike')">
+      <div class="card-top"><div class="card-name">Mixing With Mike</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">University-level free mixing curriculum — EQ moves, compression types, bussing worship drums/vocals. Long-form, serious.</div>
+      <span class="pill">youtube — Mixing With Mike</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.izotope.com/en/learn')">
+      <div class="card-top"><div class="card-name">iZotope Learn</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Mastering concepts — LUFS, limiting, spectral balance. Ozone Elements often on sale; read free articles first.</div>
+      <span class="pill">izotope.com/learn</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.youtube.com/@DanWorrall')">
+      <div class="card-top"><div class="card-name">Dan Worrall (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>The physics of EQ and compression</strong> — why knobs do what they do, not recipes. Essential for "prodigy engineer" depth.</div>
+      <span class="pill">youtube — Dan Worrall</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.cambridge-mt.com/ms/mtk.htm')">
+      <div class="card-top"><div class="card-name">Cambridge Music Technology</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free multitrack download sessions — practice mixing real stems. Worship-adjacent rock/pop sessions build transferable skills.</div>
+      <span class="pill">cambridge-mt.com</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.adobe.com/products/audition.html')">
+      <div class="card-top"><div class="card-name">Adobe Audition</div><div class="badges"><span class="badge b-pro">ADOBE</span></div></div>
+      <div class="card-desc">Podcast cleanup, noise reduction, sermon audio repair — not primary music mixer. Use for spoken-word + stream audio post when video team hands you dialogue.</div>
+      <span class="pill">adobe.com/audition</span>
+    </div>
+    <div class="card violet" onclick="openLink('https://www.youtube.com/@WavesAudio')">
+      <div class="card-top"><div class="card-name">Waves Audio Tutorials</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Industry-standard plugin workflows — same Waves servers Hillsong/Elevation use via SoundGrid. Learn plugin categories before buying.</div>
+      <span class="pill">youtube — Waves Audio</span>
+    </div>
+  </div>
+</div>
+
+<!-- DAVINCI -->
+<div class="section" data-cat="davinci">
+  <div class="sec-label">16 — DaVinci Resolve: edit, color, deliver</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://www.blackmagicdesign.com/products/davinciresolve')">
+      <div class="card-top"><div class="card-name">DaVinci Resolve (Free)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc"><strong>Install on gaming laptop now.</strong> Full edit + color + Fairlight audio. Church stream recordings → cut → grade → export. Industry standard at $0.</div>
+      <span class="pill">blackmagicdesign.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.youtube.com/@JayAreTV')">
+      <div class="card-top"><div class="card-name">JayAreTV — Resolve Color</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Node-based color grading for beginners — scopes, contrast ratios, skin tones. Worship B-roll and testimony films.</div>
+      <span class="pill">youtube — JayAreTV</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.youtube.com/@AlexJordan')">
+      <div class="card-top"><div class="card-name">Alex Jordan — Resolve Training</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Comprehensive free Resolve course — edit page shortcuts, Fusion basics, delivery for YouTube/streaming codecs.</div>
+      <span class="pill">youtube — Alex Jordan</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.studiobinder.com/blog/cinematography-techniques/')">
+      <div class="card-top"><div class="card-name">StudioBinder — Cinematography Techniques</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Shot types, framing, 180° rule, coverage — apply to iPhone worship films before buying cinema cameras.</div>
+      <span class="pill">studiobinder.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://wolfcrow.com')">
+      <div class="card-top"><div class="card-name">Wolfcrow — Cinematography Science</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Exposure, dynamic range, lens equivalence on small sensors — why your iPhone footage looks "phone-y" and how to fix it.</div>
+      <span class="pill">wolfcrow.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.youtube.com/@FilmRiot')">
+      <div class="card-top"><div class="card-name">Film Riot</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Practical zero-budget filmmaking — lighting with windows, DIY diffusion, editing rhythm. Church testimonial and promo videos.</div>
+      <span class="pill">youtube — Film Riot</span>
+    </div>
+  </div>
+</div>
+
+<!-- IPHONE CINEMA -->
+<div class="section" data-cat="iphone">
+  <div class="sec-label">17 — iPhone cinematography: your cinema camera today</div>
+  <div class="grid">
+    <div class="card teal" onclick="openLink('https://www.blackmagicdesign.com/products/blackmagiccamera')">
+      <div class="card-top"><div class="card-name">Blackmagic Camera App</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Manual ISO, shutter angle, white balance, focus peaking, ProRes/Blackmagic RAW on supported iPhones. <strong>Primary camera app for church.</strong></div>
+      <span class="pill">App Store</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.filmicpro.com')">
+      <div class="card-top"><div class="card-name">Filmic Pro</div><div class="badges"><span class="badge b-pro">PAID</span></div></div>
+      <div class="card-desc">Alternative pro camera — LOG profiles, false color, detailed bitrate control. Industry standard before Blackmagic app existed.</div>
+      <span class="pill">filmicpro.com</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@iPhoneFilmmaker')">
+      <div class="card-top"><div class="card-name">iPhone Filmmaker (YouTube)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Lighting, gimbal moves, and color for smartphone cinematography. Shoot worship B-roll in your room before Sunday.</div>
+      <span class="pill">youtube — iPhone Filmmaker</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@PotatoJet')">
+      <div class="card-top"><div class="card-name">Potato Jet</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Deep iPhone vs cinema camera tests — sensor limits, ND filters, anamorphic adapters. Know your tool's ceiling.</div>
+      <span class="pill">youtube — Potato Jet</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.moment.com/blogs/filmmaking')">
+      <div class="card-top"><div class="card-name">Moment — Filmmaking Guides</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Lens attachments, ND filters, mobile rigging — when to buy gear vs when technique is the bottleneck.</div>
+      <span class="pill">moment.com/blogs</span>
+    </div>
+    <div class="card teal" onclick="openLink('https://www.youtube.com/@learnlightroom')">
+      <div class="card-top"><div class="card-name">Learn Online Video</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Practical church and event video tutorials — multicam on budget, audio sync, stream-friendly export settings.</div>
+      <span class="pill">youtube — Learn Online Video</span>
+    </div>
+  </div>
+</div>
+
+<!-- SPIRITUAL LEADERSHIP -->
+<div class="section" data-cat="spiritual">
+  <div class="sec-label">18 — spiritual leader: shepherd first, tech second</div>
+  <div class="grid">
+    <div class="card rose" onclick="openLink('https://www.desiringgod.org/articles')">
+      <div class="card-top"><div class="card-name">Desiring God — Articles</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Theology of worship, ambition, and serving Christ in excellence — guards against ego in "platform" ministry.</div>
+      <span class="pill">desiringgod.org</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.thegospelcoalition.org/topics/worship/')">
+      <div class="card-top"><div class="card-name">The Gospel Coalition — Worship</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Biblical theology of corporate worship — what you're leading people toward, not just how loud the chorus hits.</div>
+      <span class="pill">thegospelcoalition.org</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.worshipmatters.com')">
+      <div class="card-top"><div class="card-name">Bob Kauflin — Worship Matters</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">The standard text on worship leading theology + practice. Song selection, team culture, gospel-centered planning — essential for the spiritual leader track.</div>
+      <span class="pill">worshipmatters.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://bibleproject.com')">
+      <div class="card-top"><div class="card-name">BibleProject</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Understand the narrative behind psalms and praise — leads worship from scripture depth, not chord familiarity alone.</div>
+      <span class="pill">bibleproject.com</span>
+    </div>
+    <div class="card rose" onclick="openLink('https://www.faithdrivenentrepreneur.org')">
+      <div class="card-top"><div class="card-name">Faith Driven Entrepreneur</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Stewardship of skills — your CS + multimedia stack as vocation serving the church and kingdom, not personal brand.</div>
+      <span class="pill">faithdrivenentrepreneur.org</span>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP RESOURCES -->
+<div class="section" data-cat="roadmap">
+  <div class="sec-label">19 — roadmap anchors & weekly rhythm (bookmark these)</div>
+  <div class="grid">
+    <div class="card gold" onclick="openLink('https://www.synaudcon.com')">
+      <div class="card-top"><div class="card-name">SynAudCon / Pro Sound Training</div><div class="badges"><span class="badge b-rare">RARE</span></div></div>
+      <div class="card-desc">Professional live sound education lineage — room acoustics, system tuning, rigging math. Return in Phase 4 when basics are solid.</div>
+      <span class="pill">prosoundtraining.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.acousticsfreq.com')">
+      <div class="card-top"><div class="card-name">Acoustics Freq</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Free acoustics explainers — why your church room rings at 250 Hz, how to tame reflections without magic plugins.</div>
+      <span class="pill">acousticsfreq.com</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.youtube.com/@YamahaProAudio')">
+      <div class="card-top"><div class="card-name">Yamaha Live Sound Basics</div><div class="badges"><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Manufacturer-neutral theory on gain structure, feedback, and PA deployment — applies to any console brand.</div>
+      <span class="pill">youtube — Yamaha Pro Audio</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.coursera.org/specializations/music-production')">
+      <div class="card-top"><div class="card-name">Coursera — Berklee Music Production</div><div class="badges"><span class="badge b-pro">CORE</span></div></div>
+      <div class="card-desc"><strong>Use your subscription.</strong> Berklee faculty — DAW workflow, mic techniques, mixing. One course at a time alongside free resources.</div>
+      <span class="pill">coursera.org</span>
+    </div>
+    <div class="card gold" onclick="openLink('https://www.coursera.org/learn/film-production')">
+      <div class="card-top"><div class="card-name">Coursera — Film Production</div><div class="badges"><span class="badge b-pro">CORE</span></div></div>
+      <div class="card-desc">Structured cinematography and production pipeline — complements Wolfcrow/StudioBinder free essays with assignments.</div>
+      <span class="pill">coursera.org</span>
+    </div>
+  </div>
+</div>
+
+<!-- ACOUSTICS & PHYSICS -->
+<div class="section" data-cat="foundations">
+  <div class="sec-label">20 — audio physics: the CS-brain layer under the knobs</div>
+  <div class="grid">
+    <div class="card blue" onclick="openLink('https://www.phys.unsw.edu.au/jw/dB.html')">
+      <div class="card-top"><div class="card-name">UNSW — Decibels Explained</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Logarithmic scales, dB SPL, dBu, dBV — the math behind every fader and meter. Read once, reference forever.</div>
+      <span class="pill">phys.unsw.edu.au</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.acs.psu.edu/drussell/demos.html')">
+      <div class="card-top"><div class="card-name">Penn State — Acoustics Animations</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">Standing waves, room modes, interference — visual physics of why mics feedback and where to place speakers.</div>
+      <span class="pill">acs.psu.edu</span>
+    </div>
+    <div class="card blue" onclick="openLink('https://www.dspguide.com')">
+      <div class="card-top"><div class="card-name">DSP Guide (free book)</div><div class="badges"><span class="badge b-rare">RARE</span><span class="badge b-free">FREE</span></div></div>
+      <div class="card-desc">dspguide.com — digital signal processing from samples to FFT. For when you want to understand plugins at the code level (CS + audio intersection).</div>
+      <span class="pill">dspguide.com</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="count-bar" id="cnt">showing all resources — tap any card to open</div>
+
+<script>
+let cur='all';
+function filt(f,b){
+  cur=f;
+  document.querySelectorAll('.ftag').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  go();
+}
+function go(){
+  const q=document.getElementById('q').value.toLowerCase();
+  let n=0;
+  document.querySelectorAll('.section').forEach(s=>{
+    const cat=s.dataset.cat||'';
+    const matchCat=cur==='all'||cat.split(' ').includes(cur);
+    let any=false;
+    s.querySelectorAll('.card').forEach(c=>{
+      const txt=c.textContent.toLowerCase();
+      const ok=matchCat&&(!q||txt.includes(q));
+      c.classList.toggle('hidden',!ok);
+      if(ok){any=true;n++;}
+    });
+    s.style.display=any?'':'none';
+  });
+  document.getElementById('cnt').textContent=n+' resources shown — tap any card to open';
+}
+function openLink(url){ window.open(url, '_blank'); }
+</script>
